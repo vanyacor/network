@@ -1,0 +1,92 @@
+.loginWrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.loginFormWrapper {
+    min-width: 100px;
+    padding: 30px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    box-shadow: 0 0 2px 0.2px rgb(235, 235, 235);
+}
+
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.loginText {
+    color: rgb(8, 133, 250);
+    font-weight: bold;
+    text-align: center;
+    cursor: context-menu;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin: 4px 0 20px 0;
+}
+
+.checkbox input[type="checkbox"] {
+    border: 1px solid rgb(230, 228, 228);
+
+    cursor: pointer;
+}
+
+.inputs {
+    height: 40px;
+    width: 260px;
+    margin: 6px 0;
+    outline: none;
+    padding: 10px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    border: 1px solid rgb(230, 228, 228);
+}
+
+.submitBtn {
+    color: white;
+    font-weight: bold;
+    background-color: rgb(8, 133, 250);
+    cursor: pointer;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+}
+
+.submitBtn:hover {
+    background-color: rgb(2, 182, 62);
+}
+
+.error {
+    border: 1px solid rgb(255, 109, 109);
+}
+
+.errorLogin {
+    text-align: center;
+    color: rgb(255, 0, 0);
+}

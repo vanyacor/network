@@ -1,0 +1,22 @@
+.linePreloader{
+    width:260px;
+    height:4px;
+    background:linear-gradient(to right,#00a3ee,#00a3ee);
+    background-color:rgb(255, 255, 255);
+    position:fixed;
+    bottom:15px;
+    left:0;
+    right:0;
+    margin:auto;
+    border-radius:4px;
+    background-size:20%;
+    background-repeat:repeat-y;
+    background-position:-25% 0;
+    animation:scroll 1.2s ease-in-out infinite;
+    -webkit-animation:scroll 1.2s ease-in-out infinite;
+}
+  
+  @keyframes scroll{
+    50%{background-size:80%}
+    100%{background-position:125% 0;}
+  }

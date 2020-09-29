@@ -1,0 +1,16 @@
+.post {
+    display: flex;
+    margin: 0 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    justify-content: space-between;
+    background-color: #fff;
+    box-shadow: 0 0 10px 2px rgb(241, 241, 241);
+    word-wrap: break-word;
+}
+
+@media (max-width: 576px) {
+    .post {
+        margin: 0;
+    }
+}

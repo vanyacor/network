@@ -1,0 +1,23 @@
+.dialog {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: rgb(49, 49, 49);
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+}
+
+.dialog:hover {
+    background-color: rgb(225, 226, 226);
+}
+
+.dialog+.dialog {
+    border-top: 1px solid rgb(248, 248, 248);
+}
+
+.active, .active:hover {
+    background-color: rgb(157, 207, 255);
+}

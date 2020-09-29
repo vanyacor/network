@@ -1,0 +1,14 @@
+.profile {
+    height: 100%;
+    padding-top: 10px;
+    overflow-y: scroll;
+}
+
+.profile::-webkit-scrollbar {
+    display: none;
+}
+
+.profile {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

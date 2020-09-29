@@ -1,0 +1,67 @@
+.profile__avatar {
+    padding: 10px;
+    display: flex;
+    min-height: 100px;
+    position: relative;
+    box-shadow: 0 1px 20px 1px rgb(240, 240, 240);
+    background-color: rgb(255, 255, 255);
+    flex-direction: column;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.avatar {
+    border: none;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    margin-top: -100px;
+    margin-right: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(255, 255, 255);
+}
+
+.fullName {
+    white-space: nowrap;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 20px;
+}
+
+.lookFJ {
+    color: rgb(77, 77, 77);
+    margin-top: 10px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 16px;
+}
+
+.lookFJD {
+    color: rgb(77, 77, 77);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 16px;
+}
+
+.aboutMe {
+    color: rgb(77, 77, 77);
+    margin-top: 10px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 16px;
+}
+
+.bold {
+    font-weight: bold;
+}
+    

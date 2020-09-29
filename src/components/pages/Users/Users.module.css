@@ -1,0 +1,52 @@
+.users {
+    height: 100%;
+    padding: 10px 0;
+    overflow-y: scroll;
+}
+
+.users::-webkit-scrollbar {
+    display: none;
+}
+
+.users {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+
+.pagesCountWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.page {
+    cursor: pointer;
+    padding: 2px;
+    font-weight: bold;
+    color: rgb(53, 52, 52);
+}
+
+.selectedPage {
+    padding: 2px 6px;
+    background-color: rgb(15, 176, 240);
+    color: #ffffff;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+
+.page + .page {
+    margin-left: 6px;
+}
+
+.startPage {
+    border-right: 1px solid rgb(211, 211, 211);
+}
+
+.endPage {
+    border-left: 1px solid rgb(211, 211, 211);
+}

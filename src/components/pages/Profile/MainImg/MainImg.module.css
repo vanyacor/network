@@ -1,0 +1,55 @@
+.img {
+    position: relative;
+    height: 200px;
+    text-align: center;
+    font-size: 40px;
+    line-height: 100px;
+    color: rgb(231, 231, 231);
+}
+
+.img img {
+    height: 100%;
+    width: 100%;
+}
+
+.statusWrapper {
+    max-width: 60%;
+    min-width: 200px;
+    max-height: 100px;
+    position: absolute;
+    display: flex;
+    justify-content: start;
+    padding: 10px;
+    top: 0;
+    right: 10px;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 2px 2px rgb(245, 245, 245);
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.statusText {
+    text-align: left;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    max-width: 100%;
+    min-width: 200px;
+    max-height: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.statusInput {
+    resize: none;
+}
+
+@media (max-width: 576px) {
+    .statusWrapper {
+        max-width: 100%;
+        width: 100%;
+        right: 0;
+    }
+}
