@@ -11,6 +11,7 @@ const News = React.lazy(() => import('./../pages/News/News'));
 const Settings = React.lazy(() => import('./../pages/Settings/Settings'));
 
 let Content = props => {
+    debugger;
     return (
         <div>
             <Header login={props.login} logout={props.logout} />
@@ -31,7 +32,7 @@ let Content = props => {
                         render={() => <ProfileContainer />} />
                     <Route key="users" path="/users"
                         render={() => <UsersContainer />} />
-                    <Route key="/" exact path={process.env.PUBLIC_URL + "/"} render={() => <Redirect to="/profile" />} />
+                    <Route key="/" path={"/"} render={() => <Redirect to="/profile" />} />
                 </div>
             </div>
             <Navbar />

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import AuthContainer from './components/auth/AuthContainer';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/redux-store';
 
@@ -15,11 +15,11 @@ const App = (props) => {
 const AppContainer = (props) => {
     return (
         <React.StrictMode>
-            <BrowserRouter>
+            <HashRouter >
                 <Provider store={store}>
                     <App />
                 </Provider>
-            </BrowserRouter>
+            </HashRouter>
         </React.StrictMode>
     )
 }
