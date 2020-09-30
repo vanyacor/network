@@ -1,17 +1,29 @@
 import React from 'react';
 import classes from './Avatar.module.css';
+import userPhoto from '../../../../assets/images/autoAvatar.png';
+import { SavePhotoLoader } from './../../../preloader/SavePhotoLoader';
 
 const Avatar = (props) => {
-    return (
-            <div className={classes.profile__avatar}>
-                <img className={classes.avatar} src={props.profile.photos.large} />
-                <div className={classes.fullName}><span>{props.profile.fullName}</span></div>
-                <div className={classes.lookFJ}><span className={classes.bold}>Looking for a job: </span><span>{props.profile.lookingForAJob ? "Yes" : "No"}</span></div>
-                <div className={classes.lookFJD}><span>{props.profile.lookingForAJobDescription}</span></div>
-                <div className={classes.aboutMe}><span className={classes.bold}>About me: </span><span>{props.profile.aboutMe}</span></div>
-            </div>
-    );
 
+    const omMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0]);
+        }
+    }
+    return (
+        <div className={classes.avatar}>
+            {props.isPhotoSaving ? <SavePhotoLoader /> : <img
+                className={classes.avatarImg}
+                src={props.photo
+                    ? props.photo
+                    : userPhoto} alt="AVATAR" >
+            </img>}
+            {props.isOwner && <input
+                className={classes.file}
+                type={"file"}
+                onChange={omMainPhotoSelected} />}
+        </div>
+    );
 }
 
 export default Avatar;

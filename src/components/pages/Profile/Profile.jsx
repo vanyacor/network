@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Profile.module.css';
 import MainImg from './MainImg/MainImg';
-import Avatar from './Avatar/Avatar';
+import ProfileInfo from './Avatar/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import Loader from '../../preloader/Loader';
 
@@ -16,9 +16,13 @@ const Profile = (props) => {
                 currentUser={props.userId}
                 profileUser={props.match.params.userId}
                 setStatus={props.setStatus}
-                updateStatus={props.updateStatus} 
-                />
-            <Avatar profile={props.profile} />
+                updateStatus={props.updateStatus}
+            />
+            <ProfileInfo profile={props.profile}
+                    isOwner={props.owner}
+                    savePhoto={props.savePhoto}
+                    isPhotoSaving={props.isPhotoSaving}
+            />
             <MyPostsContainer />
         </div>
     )

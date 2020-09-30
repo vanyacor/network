@@ -6,6 +6,8 @@ const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const TOOGLE_IS_FETCHING = 'profile/TOOGLE_IS_FETCHING';
 const SET_STATUS = 'profile/SET_STATUS';
 const DELETE_POST = 'profile/DELETE_POST';
+const SAVE_PHOTO_SUCCES = 'profile/SAVE_PHOTO_SUCCES';
+const SET_IS_PHOTO_SAVING = 'profile/SET_IS_PHOTO_SAVING';
 
 let initialState = {
     posts: [/* 
@@ -16,6 +18,7 @@ let initialState = {
     newPostText: '',
     profile: null,
     isFetching: false,
+    isPhotoSaving: false,
     status: '',
 };
 
@@ -57,6 +60,19 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: state.posts.filter(p => p.id != action.postId)
             }
+        case SAVE_PHOTO_SUCCES:
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    photos: action.photos
+                },
+            };
+        case SET_IS_PHOTO_SAVING:
+            return {
+                ...state,
+                isPhotoSaving: action.isSaving,
+            }
         default:
             return state;
     }
@@ -86,6 +102,15 @@ export const deletePost = (postId) => ({
     type: DELETE_POST,
     postId,
 });
+export const savePhotoSucces = (photos) => ({
+    type: SAVE_PHOTO_SUCCES,
+    photos,
+});
+
+export const setIsPhotoSaving = (isSaving) => ({
+    type: SET_IS_PHOTO_SAVING,
+    isSaving,
+});
 
 export const getUser = (urlUserId, authUserId) => async (dispatch) => {
     let userId = urlUserId;
@@ -112,6 +137,14 @@ export const updateStatus = (status) => async (dispatch) => {
     if (data.resultCode === 0) {
         dispatch(setStatus(status));
     }
+}
+export const savePhoto = (file) => async (dispatch) => {
+    dispatch(setIsPhotoSaving(true));
+    let data = await profileAPI.savePhoto(file);
+    if (data.resultCode === 0) {
+        dispatch(savePhotoSucces(data.data.photos));
+    }
+    dispatch(setIsPhotoSaving(false));
 }
 
 export default profileReducer;
