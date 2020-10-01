@@ -80,5 +80,3 @@ export const authAPI = {
             })
     },
 };
-
-const set = {};
