@@ -19,10 +19,11 @@
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
+  user-select: none; 
 }
 
 .links {
-  padding: 0;
+  padding: 0 10px;
 }
 
 .links+.links {
@@ -33,7 +34,7 @@
   color: rgb(100, 100, 100);
   text-decoration: none;
   font-weight: 700;
-  padding: 0 10px;
+  padding: 0;
 }
 
 .img {
