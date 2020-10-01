@@ -5,7 +5,7 @@
 .post {
     margin: 0 100px;
     padding: 10px;
-    box-shadow: 0 0 10px 2px rgb(231, 231, 231);
+    box-shadow: 0 0 6px 0.4px rgb(231, 231, 231);
     background-color: #fff;
 }
 

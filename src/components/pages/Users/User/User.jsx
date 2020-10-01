@@ -20,12 +20,11 @@ const User = (props) => {
             <div className={classes.infoContainer}>
                 <div className={classes.data}>
                     <span>{props.user.name}</span>
-                    <span>{/* {"country"}, {"city"} */}</span>
-                </div>
-                <div className={classes.status}>{props.user.status}</div>
-                {props.user.followed
+                    {props.user.followed
                     ? <button disabled={props.followingInProgress.some(id=> id == props.user.id)} onClick={unFollow} className={classes.followBtn + ' ' + classes.unsubscribe}>Unfollow</button>
                     : <button disabled={props.followingInProgress.some(id=> id == props.user.id)} onClick={follow} className={classes.followBtn + ' ' + classes.subscribe}>Follow</button>}
+                </div>
+                <div className={classes.status}>{props.user.status}</div>
             </div>
         </div>
     );
