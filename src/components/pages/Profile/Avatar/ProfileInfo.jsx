@@ -1,6 +1,7 @@
 import React from 'react';
 import Avatar from './Avatar';
 import classes from './Avatar.module.css';
+import youtube from './../../../../assets/images/youtube.svg'
 
 const ProfileInfo = (props) => {
     return (
@@ -39,6 +40,11 @@ const ProfileInfo = (props) => {
                 <span>
                     {props.profile.aboutMe}
                 </span>
+            </div>
+            <div>
+                <a href={"https://youtube.com"}>
+                    <img src={youtube}/>
+                </a>
             </div>
         </div>
     );
