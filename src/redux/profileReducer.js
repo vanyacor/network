@@ -1,3 +1,4 @@
+import { stopSubmit } from 'redux-form';
 import { profileAPI, usersAPI } from '../api/api';
 
 const ADD_POST = 'profile/ADD-POST';
@@ -146,5 +147,21 @@ export const savePhoto = (file) => async (dispatch) => {
     }
     dispatch(setIsPhotoSaving(false));
 }
+
+export const saveProfile = (formData, setEditMode, setIsFetching) => async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    setIsFetching(true);
+
+    const data = await profileAPI.saveProfile(formData);
+
+    if (data.resultCode === 0) {
+        setEditMode(false);
+        dispatch(getUser(null, userId));
+    }else {
+        let message = data.messages.length > 0 ? data.messages[0] : "Some error.";
+        dispatch(stopSubmit("profileEdit", { _error: message })); // {"contacts": {"facebook": message}}
+    }   
+    setIsFetching(false);
+};
 
 export default profileReducer;

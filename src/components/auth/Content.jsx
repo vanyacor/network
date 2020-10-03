@@ -5,6 +5,7 @@ import ProfileContainer from '../pages/Profile/ProfileContainer';
 import UsersContainer from '../pages/Users/UsersContainer';
 import Navbar from './../Navbar/Navbar';
 import Loader from '../preloader/Loader';
+import ProfileEditor from '../pages/Profile/Avatar/ProfileEditor';
 
 const Dialogs = React.lazy(() => import('./../pages/Dialogs/Dialogs'));
 const News = React.lazy(() => import('./../pages/News/News'));
@@ -15,7 +16,6 @@ let Content = props => {
         <div>
             <Header login={props.login} logout={props.logout} />
             <div className="container">
-
                 <div className="app-wrapper-content">
                     <React.Suspense fallback={<Loader></Loader>}>
                         <Switch >
@@ -25,6 +25,7 @@ let Content = props => {
                                 component={News} />
                             <Route key="settings" path="/settings"
                                 component={Settings} />
+                            />
                         </Switch>
                     </React.Suspense>
                     <Route key="profile" path="/profile/:userId?"

@@ -52,7 +52,13 @@ export const profileAPI = {
         return instance.put(`profile/photo`, formData)
             .then(response => {
                 return response.data;
-            })
+            });
+    },
+    saveProfile(profileData) {
+        return instance.put(`profile`, profileData)
+            .then(response => {
+                return response.data;
+            });
     }
 }
 

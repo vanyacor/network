@@ -9,6 +9,7 @@ import instagram from './../../../../assets/images/instagram.svg';
 import website from './../../../../assets/images/globe.svg';
 import github from './../../../../assets/images/github.svg';
 import facebook from './../../../../assets/images/facebook.svg';
+import EditBtn from './EditBtn';
 
 const ProfileInfo = (props) => {
     return (
@@ -31,8 +32,8 @@ const ProfileInfo = (props) => {
                 </span>
                 <span>
                     {props.profile.lookingForAJob
-                        ? "Yes"
-                        : "No"}
+                        ? " Yes"
+                        : " No"}
                 </span>
             </div>
             <div className={classes.lookFJD}>
@@ -45,55 +46,56 @@ const ProfileInfo = (props) => {
                     About me:
                 </span>
                 <span>
-                    {props.profile.aboutMe}
+                    {" " + props.profile.aboutMe}
                 </span>
             </div>
             <div className={classes.mainlinks_wrapper}>
                 <div className={classes.firstlinks_wrapper}>
                     <div className={classes.links_wrapper}>
-                        <a className={classes.links} href={props.profile.contacts.youtube ? props.profile.contacts.youtube : "https://youtube.com/"}>
+                        <a target="_blank" className={classes.links} href={props.profile.contacts.youtube ? props.profile.contacts.youtube : "https://youtube.com/"}>
                             <img className={classes.links} src={youtube} />
                         </a>
                     </div>
                     <div className={classes.links_wrapper}>
-                        <a className={classes.links} href={props.profile.contacts.vk ? props.profile.contacts.vk : "https://vk.com/"}>
+                        <a target="_blank" className={classes.links} href={props.profile.contacts.vk ? props.profile.contacts.vk : "https://vk.com/"}>
                             <img className={classes.links} src={vk} />
                         </a>
                     </div>
                     <div className={classes.links_wrapper}>
-                        <a className={classes.links} href={props.profile.contacts.twitter ? props.profile.contacts.twitter : "https://twitter.com/"}>
+                        <a target="_blank" className={classes.links} href={props.profile.contacts.twitter ? props.profile.contacts.twitter : "https://twitter.com/"}>
                             <img className={classes.links} src={twitter} />
                         </a>
                     </div>
                     <div className={classes.links_wrapper}>
-                        <a className={classes.links} href={props.profile.contacts.instagram ? props.profile.contacts.instagram : "https://instagram.com/"}>
+                        <a target="_blank" className={classes.links} href={props.profile.contacts.instagram ? props.profile.contacts.instagram : "https://instagram.com/"}>
                             <img className={classes.links} src={instagram} />
                         </a>
                     </div>
                 </div>
                 <div className={classes.secondlinks_wrapper}>
                     <div className={classes.links_wrapper}>
-                        <a className={classes.links} href={props.profile.contacts.github ? props.profile.contacts.github : "https://github.com/"}>
+                        <a target="_blank" className={classes.links} href={props.profile.contacts.github ? props.profile.contacts.github : "https://github.com/"}>
                             <img className={classes.links} src={github} />
                         </a>
                     </div>
                     <div className={classes.links_wrapper}>
-                        <a className={classes.links} href={props.profile.contacts.facebook ? props.profile.contacts.facebook : "https://facebook.com/"}>
+                        <a target="_blank" className={classes.links} href={props.profile.contacts.facebook ? props.profile.contacts.facebook : "https://facebook.com/"}>
                             <img className={classes.links} src={facebook} />
                         </a>
                     </div>
                     <div className={classes.links_wrapper}>
-                        <a className={classes.links} href={props.profile.contacts.website ? props.profile.contacts.website : "https://website.com/"}>
+                        <a target="_blank" className={classes.links} href={props.profile.contacts.website ? props.profile.contacts.website : "https://website.com/"}>
                             <img className={classes.links} src={website} />
                         </a>
                     </div>
                     <div className={classes.links_wrapper}>
-                        <a className={classes.links} href={props.profile.contacts.mainLink ? props.profile.contacts.mainLink : "https://mainLink.com/"}>
+                        <a target="_blank" className={classes.links} href={props.profile.contacts.mainLink ? props.profile.contacts.mainLink : "https://mainLink.com/"}>
                             <img className={classes.links} src={mainLink} />
                         </a>
                     </div>
                 </div>
             </div>
+            {props.isOwner && <EditBtn activateEditMode={props.activateEditMode}/>}
         </div>
     );
 

@@ -14,13 +14,11 @@ const App = (props) => {
 }
 const AppContainer = (props) => {
     return (
-        <React.StrictMode>
             <HashRouter >
                 <Provider store={store}>
                     <App />
                 </Provider>
             </HashRouter>
-        </React.StrictMode>
     )
 }
 
