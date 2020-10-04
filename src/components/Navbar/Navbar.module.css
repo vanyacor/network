@@ -18,7 +18,7 @@
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
-  user-select: none; 
+  user-select: none;
 }
 
 .links {
@@ -37,12 +37,12 @@
 }
 
 .img {
+  fill: #e2e2e2;
   height: 40px;
   width: 30px;
   padding: 7px 0;
 }
 
 .active .img {
-  color: #277bca;
   fill: #277bca;
 }

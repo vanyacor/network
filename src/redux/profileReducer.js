@@ -130,6 +130,8 @@ export const getStatus = (userId) => async (dispatch) => {
     let data = await profileAPI.getStatus(userId);
     if (data) {
         dispatch(setStatus(data));
+    } else if (data === null){
+        dispatch(setStatus(data));
     }
 }
 

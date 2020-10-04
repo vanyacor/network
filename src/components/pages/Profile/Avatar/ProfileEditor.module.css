@@ -10,6 +10,7 @@
 }
 
 .edit_title {
+    color: rgb(226, 226, 226);
     display: block;
     padding-top: 10px;
     margin: 0 0 10px 0;
@@ -29,6 +30,7 @@
     font-size: 20px;
     cursor: pointer;
     outline: none;
+    color: rgb(226, 226, 226);
     background-color: rgb(32, 32, 32);
 }
 
@@ -91,6 +93,7 @@
 }
 
 .contacts {
+    color: rgb(226, 226, 226);
     font-weight: bold;
     margin-top: 10px;
 }
@@ -192,6 +195,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: rgb(226, 226, 226);
     background-color: rgb(32, 32, 32);
     border-radius: 10px;
     -webkit-border-radius: 10px;
