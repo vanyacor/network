@@ -39,7 +39,7 @@
 }
 
 @media (max-width: 640px) {
-    .dialogs_items {
+    .dialogs_items_wrapper {
         display: none;
     }
 }
