@@ -1,14 +1,32 @@
-.dialogs_items {
+.dialogs_items_wrapper {
+    display: flex;
     width: 300px;
-    font-weight: 600;
     overflow-y: scroll;
-    color: white;
-    background-color: rgb(32, 32, 32);
+    padding: 10px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    background-color: rgb(32, 32, 32);
+}
+
+.dialogs_items_wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.dialogs_items_wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+.dialogs_items {
+    width: 100%;
+    font-weight: 600;
+    color: white;
+    background-color: rgb(32, 32, 32);
+    overflow-y: scroll;
 }
 
 .dialogs_items::-webkit-scrollbar {
