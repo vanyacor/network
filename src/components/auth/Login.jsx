@@ -21,7 +21,10 @@ let Login = (props) => {
         ? null
         : (<div className={classes.loginWrapper} style={Style} >
             <div className={classes.loginFormWrapper}>
-                <LoginForm onSubmit={onSubmit} />
+                <LoginForm
+                 onSubmit={onSubmit} 
+                  captchaUrl={props.captchaUrl}     
+                />
                 {props.isRequesting? <LoginLoader /> : null}
             </div>
         </div>)

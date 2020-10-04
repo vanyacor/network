@@ -5,7 +5,7 @@ import { maxlength, required } from './../../validater/validtate';
 
 let maxlength100 = maxlength(100);
 
-let input = ({input, metam, ...props}) => {
+let input = ({ input, metam, ...props }) => {
     let haserror = props.meta.touched && props.meta.error;
     let styleError = haserror ? classes.error : "";
     return (<input className={classes.inputs + " " + styleError} {...input} {...props}></input>)
@@ -30,6 +30,18 @@ let LoginForm = (props) => {
                 component={input}
                 validate={[required, maxlength100]}
             />
+            {props.captchaUrl
+                ? <>
+                    <img src={props.captchaUrl} />
+                    <Field
+                        type={"text"}
+                        name={"captcha"}
+                        placeholder={"captcha"}
+                        component={input}
+                        validate={[required, maxlength100]}
+                    />
+                </>
+                : null}
             <div className={classes.checkbox}><Field type={"checkbox"} name={"rememberMe"} component={"input"} /> remember me</div>
             <button className={classes.submitBtn + " " + classes.inputs}>Login</button>
         </form>

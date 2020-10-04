@@ -67,11 +67,12 @@ export const authAPI = {
         return instance.get(`auth/me`)
             .then(response => response.data);
     },
-    setLogin(email, password, rememberMe) {
+    setLogin(email, password, rememberMe, captcha) {
         return instance.post(`auth/login`, {
             email,
             password,
             rememberMe,
+            captcha,
         })
             .then(response => {
                 return response.data;
@@ -86,3 +87,11 @@ export const authAPI = {
             })
     },
 };
+
+
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`);
+    }
+}
+

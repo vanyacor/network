@@ -20,7 +20,9 @@ class AuthContainer extends React.Component {
                     isRequesting={this.props.isRequesting}
                     isFetching={this.props.isFetching}
                     setLogin={this.props.setLogin}
-                    bgimg={img}></Login>}
+                    bgimg={img}
+                    captchaUrl={this.props.captchaUrl}
+                    ></Login>}
         </div>)
     }
 }
@@ -40,6 +42,7 @@ let mapStateToProps = (state) => {
         isFetching: getIsFetchingSelect(state),
         login: getLoginSelect(state),
         isRequesting: state.auth.isRequesting,
+        captchaUrl: state.auth.captchaUrl,
     }
 };
 
