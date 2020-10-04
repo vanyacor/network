@@ -146,7 +146,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 280px;
     background-color: #fff;
     border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -162,7 +161,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 280px;
     background-color: #fff;
     border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -177,7 +175,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 280px;
     background-color: #fff;
     border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -193,5 +190,20 @@
 
     100% {
         background-position: 125% 0;
+    }
+}
+
+
+@media (min-width: 320px) {
+    
+    .contactBlock, .nameblock, .aboutmeblock {
+        width: 280px;
+    }
+}
+
+@media (min-width: 380px) {
+    
+    .contactBlock, .nameblock, .aboutmeblock {
+        width: 340px;
     }
 }
