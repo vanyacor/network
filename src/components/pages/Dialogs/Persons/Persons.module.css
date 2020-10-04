@@ -3,6 +3,12 @@
     box-shadow: 0 0 10px 2px rgb(243, 242, 242);
     font-weight: 600;
     overflow-y: scroll;
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .dialogs_items::-webkit-scrollbar {
@@ -12,4 +18,10 @@
 .dialogs_items {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+@media (max-width: 640px) {
+    .dialogs_items {
+        display: none;
+    }
 }

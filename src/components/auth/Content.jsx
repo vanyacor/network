@@ -13,7 +13,7 @@ const Settings = React.lazy(() => import('./../pages/Settings/Settings'));
 
 let Content = props => {
     return (
-        <div>
+        <div className="appWrapper">
             <Header login={props.login} logout={props.logout} />
             <div className="container">
                 <div className="app-wrapper-content">

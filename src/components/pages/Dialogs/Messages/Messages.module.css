@@ -7,6 +7,12 @@
     box-shadow: 0 0 10px 2px rgb(233, 233, 233);
     color: rgb(26, 26, 26);
     font-weight: 500;
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .messages {
@@ -96,4 +102,10 @@
 .messageBtn:hover {
     cursor: pointer;
     background-color: rgb(81, 169, 252);
+}
+
+@media(max-width: 640px) {
+    .wrapper {
+        margin-left: 0;
+    }
 }

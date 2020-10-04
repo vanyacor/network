@@ -1,5 +1,5 @@
 .profile__avatar {
-    padding: 10px;
+    padding: 20px;
     display: flex;
     min-height: 100px;
     position: relative;
@@ -9,6 +9,11 @@
     white-space: pre-wrap;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .avatar {

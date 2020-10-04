@@ -6,7 +6,6 @@
   width: 100%;
   z-index: 2; 
   background-color: #fff;
-  box-shadow: 0 0 6px 1px rgba(248, 248, 248, 0.5);
   justify-content: space-between;
   align-items: center;
 }
@@ -36,6 +35,11 @@
   -moz-transition: all 0.3s;
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 .logout:hover {
