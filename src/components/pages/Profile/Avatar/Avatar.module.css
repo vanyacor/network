@@ -3,7 +3,6 @@
     display: flex;
     min-height: 100px;
     position: relative;
-    box-shadow: 0 0 6px 1px rgb(240, 240, 240);
     background-color: rgb(255, 255, 255);
     flex-direction: column;
     white-space: pre-wrap;

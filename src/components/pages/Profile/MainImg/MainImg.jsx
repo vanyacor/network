@@ -5,7 +5,6 @@ import ProfileStatus from './ProfileStatus';
 const MainImg = (props) => {
     return (
         <div className={classes.img}>
-            <div>Must be IMG</div>
             <ProfileStatus
                 status={props.status ? props.status : ''}
                 setStatus={props.setStatus}
