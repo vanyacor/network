@@ -8,7 +8,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #fff;
+  background-color: rgb(32, 32, 32);
   border-radius: 17px;
   -webkit-border-radius: 17px;
   -moz-border-radius: 17px;

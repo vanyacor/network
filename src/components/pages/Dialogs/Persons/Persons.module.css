@@ -2,7 +2,8 @@
     width: 300px;
     font-weight: 600;
     overflow-y: scroll;
-    background-color: #fff;
+    color: white;
+    background-color: rgb(32, 32, 32);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;

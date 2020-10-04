@@ -29,7 +29,7 @@
     font-size: 20px;
     cursor: pointer;
     outline: none;
-    background-color: #fff;
+    background-color: rgb(32, 32, 32);
 }
 
 .editform {
@@ -51,7 +51,7 @@
     outline: none;
     color: white;
     font-weight: bold;
-    background-color: rgb(0, 151, 252);
+    background-color: rgb(47, 127, 247);
     transition: all .3s;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
@@ -74,17 +74,24 @@
     -moz-border-radius: 6px;
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
-    border: 1px solid rgb(230, 228, 228);
+    color: rgb(185, 185, 185);
+    background-color: rgb(39, 39, 39);
+    border: 1px solid rgb(54, 54, 54);
 }
 
+.inputs:focus {
+    border: 1px solid rgb(24, 163, 255);
+}
 
 
 
 .checkboxlabel {
+    color: rgb(202, 201, 201);
     margin-top: 10px;
 }
 
 .contacts {
+    font-weight: bold;
     margin-top: 10px;
 }
 
@@ -99,10 +106,18 @@
     -moz-border-radius: 6px;
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
+    color: rgb(185, 185, 185);
     border: 1px solid rgb(230, 228, 228);
     resize: none;
     overflow-y: scroll;
+    background-color: rgb(39, 39, 39);
+    border: 1px solid rgb(54, 54, 54);
 }
+
+.textarea:focus {
+    border: 1px solid rgb(24, 163, 255);
+}
+
 
 .textarea::-webkit-scrollbar {
     display: none;
@@ -146,7 +161,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
+    background-color: rgb(32, 32, 32);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -161,7 +176,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
+    background-color: rgb(32, 32, 32);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -170,13 +185,14 @@
 }
 
 .aboutmeblock {
+    font-weight: bold;
     position: relative;
     margin-bottom: 5px;
     padding: 10px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
+    background-color: rgb(32, 32, 32);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;

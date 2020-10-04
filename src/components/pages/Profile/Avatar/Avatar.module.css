@@ -3,7 +3,7 @@
     display: flex;
     min-height: 100px;
     position: relative;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(32, 32, 32);
     flex-direction: column;
     white-space: pre-wrap;
     overflow-wrap: break-word;
@@ -26,7 +26,6 @@
     margin-right: 10px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: rgb(255, 255, 255);
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -42,7 +41,7 @@
 
 .fullName {
     white-space: nowrap;
-    color: rgb(0, 0, 0);
+    color: rgb(204, 204, 204);
     font-weight: bold;
     white-space: pre-wrap;
     overflow-wrap: break-word;
@@ -51,7 +50,7 @@
 }
 
 .lookFJ {
-    color: rgb(77, 77, 77);
+    color: rgb(109, 108, 108);
     margin-top: 10px;
     white-space: pre-wrap;
     overflow-wrap: break-word;
@@ -60,7 +59,7 @@
 }
 
 .lookFJD {
-    color: rgb(77, 77, 77);
+    color: rgb(109, 108, 108);
     white-space: pre-wrap;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -68,7 +67,7 @@
 }
 
 .aboutMe {
-    color: rgb(77, 77, 77);
+    color: rgb(109, 108, 108);
     margin-top: 10px;
     white-space: pre-wrap;
     overflow-wrap: break-word;

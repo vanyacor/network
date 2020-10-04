@@ -15,13 +15,12 @@
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: rgb(32, 32, 32);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    box-shadow: 0 0 2px 0.2px rgb(235, 235, 235);
 }
 
 
@@ -42,13 +41,13 @@
 .checkbox {
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
     margin: 4px 0 20px 0;
+    color: white;
 }
 
 .checkbox input[type="checkbox"] {
-    border: 1px solid rgb(230, 228, 228);
-
     cursor: pointer;
 }
 
@@ -63,7 +62,14 @@
     -moz-border-radius: 6px;
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
-    border: 1px solid rgb(230, 228, 228);
+    font-weight: bold;
+    color: white;
+    background-color: rgb(46, 46, 46);
+    border: none;
+}
+
+.inputs:focus {
+   border: 1px solid rgb(8, 133, 250);
 }
 
 .submitBtn {
@@ -88,5 +94,5 @@
 
 .errorLogin {
     text-align: center;
-    color: rgb(255, 0, 0);
+    color: rgb(143, 4, 4);
 }
