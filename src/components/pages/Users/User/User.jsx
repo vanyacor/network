@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './User.module.css';
 import userPhoto from '../../../../assets/images/autoAvatar.png';
 import { NavLink } from 'react-router-dom';
+import cn from 'classnames/bind';
 
 const User = (props) => {
     const follow = () => {
@@ -21,8 +22,14 @@ const User = (props) => {
                 <div className={classes.data}>
                     <span>{props.user.name}</span>
                     {props.user.followed
-                    ? <button disabled={props.followingInProgress.some(id=> id == props.user.id)} onClick={unFollow} className={classes.followBtn + ' ' + classes.unsubscribe}>Unfollow</button>
-                    : <button disabled={props.followingInProgress.some(id=> id == props.user.id)} onClick={follow} className={classes.followBtn + ' ' + classes.subscribe}>Follow</button>}
+                        ? <button
+                            disabled={props.followingInProgress.some(id => id == props.user.id)}
+                            onClick={unFollow}
+                            className={cn(classes.followBtn, classes.unsubscribe)}>Unfollow</button>
+                        : <button
+                            disabled={props.followingInProgress.some(id => id == props.user.id)}
+                            onClick={follow}
+                            className={cn(classes.followBtn, classes.subscribe)}>Follow</button>}
                 </div>
                 <div className={classes.status}>{props.user.status}</div>
             </div>

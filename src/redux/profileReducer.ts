@@ -1,5 +1,6 @@
 import { stopSubmit } from 'redux-form';
 import { profileAPI, usersAPI } from '../api/api';
+import { PhotosType, PostType, ProfileType } from './../types/types';
 
 const ADD_POST = 'profile/ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'profile/UPDATE-NEW-POST-TEXT';
@@ -10,20 +11,19 @@ const DELETE_POST = 'profile/DELETE_POST';
 const SAVE_PHOTO_SUCCES = 'profile/SAVE_PHOTO_SUCCES';
 const SET_IS_PHOTO_SAVING = 'profile/SET_IS_PHOTO_SAVING';
 
+
+
 let initialState = {
-    posts: [/* 
-        { id: 1, message: 'Hi, how are you?', likesCount: "22" },
-        { id: 2, message: "Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post Its my first post ", likesCount: "23" },
-        { id: 3, message: 'It\'s my first post', likesCount: "2" },
-     */],
+    posts: [] as Array<PostType>,
     newPostText: '',
-    profile: null,
+    profile: null as null | ProfileType,
     isFetching: false,
     isPhotoSaving: false,
     status: '',
 };
+export type InitialStateType = typeof initialState;
 
-const profileReducer = (state = initialState, action) => {
+const profileReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case ADD_POST:
             let newpost = {
@@ -67,7 +67,7 @@ const profileReducer = (state = initialState, action) => {
                 profile: {
                     ...state.profile,
                     photos: action.photos
-                },
+                } as ProfileType,
             };
         case SET_IS_PHOTO_SAVING:
             return {
@@ -79,41 +79,88 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const addPostActionCreator = () => ({ type: ADD_POST, });
+//ADD_POST ACTION CREATOR
+type addPostActionCreatorActionType = {
+    type: typeof ADD_POST
+}
+export const addPostActionCreator = (): addPostActionCreatorActionType => ({ type: ADD_POST, });
 
-export const updateNewPostTextActionCreator = (newText) => ({
+//UPDATE_NEW_POST_TEXT action creator
+type updateNewPostTextActionCreatorActionType = {
+    type: typeof UPDATE_NEW_POST_TEXT
+    newText: string
+}
+export const updateNewPostTextActionCreator = (newText: string): updateNewPostTextActionCreatorActionType => ({
     type: UPDATE_NEW_POST_TEXT,
     newText,
 });
-export const setUserProfile = (profile) => ({
+
+//SET_USER_PROFILE action creator
+
+type setUserProfileActionType = {
+    type: typeof SET_USER_PROFILE
+    profile: Object
+}
+export const setUserProfile = (profile: Object): setUserProfileActionType => ({
     type: SET_USER_PROFILE,
     profile,
 });
-export const setIsFetching = (isFetching) => ({
+
+//TOOGLE_IS_FETCHING action creator
+type setIsFetchingActionType = {
+    type: typeof TOOGLE_IS_FETCHING
+    isFetching: boolean
+}
+export const setIsFetching = (isFetching: boolean): setIsFetchingActionType => ({
     type: TOOGLE_IS_FETCHING,
     isFetching,
 });
 
-export const setStatus = (status) => ({
+// SET_STATUS action creator
+
+type setStatusActionType = {
+    type: typeof SET_STATUS
+    status: string
+}
+export const setStatus = (status: string): setStatusActionType => ({
     type: SET_STATUS,
     status,
 });
 
-export const deletePost = (postId) => ({
+
+//DELETE_POST action creator 
+
+type deletePostActionType = {
+    type: typeof DELETE_POST
+    postId: number
+}
+export const deletePost = (postId: number): deletePostActionType => ({
     type: DELETE_POST,
     postId,
 });
-export const savePhotoSucces = (photos) => ({
+
+//SAVE_PHOTO_SUCCES action creator
+type savePhotoSuccesActionType = {
+    type: typeof SAVE_PHOTO_SUCCES
+    photos: PhotosType 
+}
+export const savePhotoSucces = (photos: PhotosType ): savePhotoSuccesActionType => ({
     type: SAVE_PHOTO_SUCCES,
     photos,
 });
 
-export const setIsPhotoSaving = (isSaving) => ({
+//SET_IS_PHOTO_SAVING action creator
+type setIsPhotoSavingActionType = {
+    type: typeof SET_IS_PHOTO_SAVING
+    isSaving: boolean
+}
+export const setIsPhotoSaving = (isSaving: boolean): setIsPhotoSavingActionType => ({
     type: SET_IS_PHOTO_SAVING,
     isSaving,
 });
 
-export const getUser = (urlUserId, authUserId) => async (dispatch) => {
+
+export const getUser = (urlUserId: number | null, authUserId: number) => async (dispatch: any) => {
     let userId = urlUserId;
     if (!userId) {
         userId = authUserId;
@@ -126,22 +173,27 @@ export const getUser = (urlUserId, authUserId) => async (dispatch) => {
     dispatch(setIsFetching(false));
 }
 
-export const getStatus = (userId) => async (dispatch) => {
+export const getStatus = (userId: number) => async (dispatch: any) => {
     let data = await profileAPI.getStatus(userId);
     if (data) {
         dispatch(setStatus(data));
-    } else if (data === null){
+    } else if (data === null) {
         dispatch(setStatus(data));
     }
 }
 
-export const updateStatus = (status) => async (dispatch) => {
-    let data = await profileAPI.updateStatus(status);
-    if (data.resultCode === 0) {
-        dispatch(setStatus(status));
+export const updateStatus = (status: string) => async (dispatch: any) => {
+    try {
+        let data = await profileAPI.updateStatus(status);
+        if (data.resultCode === 0) {
+            dispatch(setStatus(status));
+        }
+    } catch (error) {
+        console.error(error);
     }
+
 }
-export const savePhoto = (file) => async (dispatch) => {
+export const savePhoto = (file: File) => async (dispatch: any) => {
     dispatch(setIsPhotoSaving(true));
     let data = await profileAPI.savePhoto(file);
     if (data.resultCode === 0) {
@@ -150,7 +202,7 @@ export const savePhoto = (file) => async (dispatch) => {
     dispatch(setIsPhotoSaving(false));
 }
 
-export const saveProfile = (formData, setEditMode, setIsFetching) => async (dispatch, getState) => {
+export const saveProfile = (formData: Object, setEditMode: Function, setIsFetching: Function) => async (dispatch: any, getState: Function) => {
     const userId = getState().auth.userId;
     setIsFetching(true);
 
@@ -159,10 +211,10 @@ export const saveProfile = (formData, setEditMode, setIsFetching) => async (disp
     if (data.resultCode === 0) {
         setEditMode(false);
         dispatch(getUser(null, userId));
-    }else {
+    } else {
         let message = data.messages.length > 0 ? data.messages[0] : "Some error.";
         dispatch(stopSubmit("profileEdit", { _error: message })); // {"contacts": {"facebook": message}}
-    }   
+    }
     setIsFetching(false);
 };
 

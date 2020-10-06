@@ -5,7 +5,6 @@ import ProfileContainer from '../pages/Profile/ProfileContainer';
 import UsersContainer from '../pages/Users/UsersContainer';
 import Navbar from './../Navbar/Navbar';
 import Loader from '../preloader/Loader';
-import ProfileEditor from '../pages/Profile/Avatar/ProfileEditor';
 
 const Dialogs = React.lazy(() => import('./../pages/Dialogs/Dialogs'));
 const News = React.lazy(() => import('./../pages/News/News'));
@@ -25,14 +24,15 @@ let Content = props => {
                                 component={News} />
                             <Route key="settings" path="/settings"
                                 component={Settings} />
-                            />
+                            <Route key="profile" path="/profile/:userId?"
+                                render={() => <ProfileContainer />} />
+                            <Route key="users" path="/users"
+                                render={() => <UsersContainer />} />
+                            <Route key="/" exact path={"/"} render={() => <Redirect to="/profile" />} />
+                            <Route key="*" path={"*"} render={() =>  <div className={"not_found"}>404 NOT FOUND</div>} />
                         </Switch>
                     </React.Suspense>
-                    <Route key="profile" path="/profile/:userId?"
-                        render={() => <ProfileContainer />} />
-                    <Route key="users" path="/users"
-                        render={() => <UsersContainer />} />
-                    <Route key="/" exact path={"/"} render={() => <Redirect to="/profile" />} />
+
                 </div>
             </div>
             <Navbar />

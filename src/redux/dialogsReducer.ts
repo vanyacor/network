@@ -1,7 +1,10 @@
+import { DialogsUsersType, MessagesDataType, InitialStateType } from "./../types/types";
+
 const ADD_MESSAGE = 'dialogs/ADD-MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'dialogs/UPDATE-NEW-MESSAGE-TEXT';
 
-let initialState = {
+
+let initialState: InitialStateType = {
     dialogs: [
         { id: 1, name: 'Dimych' },
         { id: 2, name: 'Andrey' },
@@ -21,7 +24,7 @@ let initialState = {
         { id: 16, name: 'Sasha' },
         { id: 17, name: 'Viktor' },
         { id: 18, name: 'VAlera' },
-    ],
+    ] as Array<DialogsUsersType>,
     messagesData: [
         { user: '', id: 1, message: 'HOho' },
         { user: '', id: 2, message: 'Loldso Loldso Loldso' },
@@ -59,11 +62,11 @@ let initialState = {
         { user: '', id: 34, message: 'Sasha' },
         { user: '', id: 35, message: 'Viktor hi' },
         { user: 'me', id: 36, message: 'VAlera' },
-    ],
+    ] as Array<MessagesDataType>,
     newMessageText: '',
 };
 
-const dialogsReducer = (state = initialState, action) => {
+const dialogsReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newmessage = {
@@ -86,9 +89,19 @@ const dialogsReducer = (state = initialState, action) => {
     }
 };
 
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE, });
+// ADD_MESSAGE ACTION CREATOR
+type addMessageActionCreatorActionType = {
+    type: typeof ADD_MESSAGE
+};
+export const addMessageActionCreator = (): addMessageActionCreatorActionType => ({ type: ADD_MESSAGE, });
 
-export const updateNewMessageTextActionCreator = (text) => ({
+// UPDATE_NEW_MESSAGE_TEXT ACTION CREATOR
+
+type updateNewMessageTextActionCreatorActionType = {
+    type: typeof UPDATE_NEW_MESSAGE_TEXT,
+    newText: string,
+};
+export const updateNewMessageTextActionCreator = (text: string): updateNewMessageTextActionCreatorActionType => ({
     type: UPDATE_NEW_MESSAGE_TEXT,
     newText: text,
 });

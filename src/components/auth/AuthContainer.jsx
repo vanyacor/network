@@ -8,8 +8,18 @@ import img from './../../assets/images/forest.jpg';
 import { getIsAuthSelect, getIsFetchingSelect, getLoginSelect } from './../../redux/auth-selectors';
 
 class AuthContainer extends React.Component {
+
+    catchAllUnhandledErrors = (promiseRejectionEvent) => {
+        alert("Some error occured");
+        
+    }
     componentWillMount() {
         this.props.setAuth();
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+    }
+
+    componentWillUnmount () {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
 
     render() {
@@ -22,7 +32,7 @@ class AuthContainer extends React.Component {
                     setLogin={this.props.setLogin}
                     bgimg={img}
                     captchaUrl={this.props.captchaUrl}
-                    ></Login>}
+                ></Login>}
         </div>)
     }
 }
