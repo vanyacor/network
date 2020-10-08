@@ -1,17 +1,23 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm, WrappedFieldProps } from 'redux-form';
 import classes from './Login.module.css';
-import { maxlength, required } from './../../validater/validtate';
+import { maxlength, required } from '../../validater/validtate';
+import { LoginType } from '../../types/types';
 
 let maxlength100 = maxlength(100);
 
-let input = ({ input, metam, ...props }) => {
-    let haserror = props.meta.touched && props.meta.error;
+
+let input: React.FC<WrappedFieldProps> = ({ input, meta: {touched, error}, ...props }) => {
+    let haserror = touched && error;
     let styleError = haserror ? classes.error : "";
     return (<input className={classes.inputs + " " + styleError} {...input} {...props}></input>)
 }
 
-let LoginForm = (props) => {
+type LoginFormType = {
+    captchaUrl: string | null
+}
+
+let LoginForm: React.FC<InjectedFormProps<LoginType, LoginFormType> & LoginFormType> = (props) => {
     return (
         <form className={classes.form} onSubmit={props.handleSubmit}>
             <span className={classes.loginText}>Welcome to my social network</span>
@@ -48,6 +54,6 @@ let LoginForm = (props) => {
     );
 }
 
-const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
+const LoginReduxForm = reduxForm<LoginType, LoginFormType>({ form: 'login' })(LoginForm);
 
 export default LoginReduxForm;

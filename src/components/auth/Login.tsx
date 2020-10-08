@@ -1,11 +1,18 @@
 import classes from './Login.module.css';
 import React from 'react';
 import LoginForm from './LoginForm';
-import Loader from '../preloader/Loader';
 import { LoginLoader } from '../preloader/loginLoader';
+import { LoginType } from '../../types/types';
 
-let Login = (props) => {
-    const onSubmit = (formData) => {
+type LoginPageType = {
+    setLogin: (LoginData: LoginType) => void
+    bgimg: string
+    isFetching: boolean
+    isRequesting: boolean
+    captchaUrl: string | null
+}
+let Login: React.FC<LoginPageType> = (props) => {
+    const onSubmit = (formData: LoginType) => {
         props.setLogin(formData);
     }
 
@@ -22,10 +29,10 @@ let Login = (props) => {
         : (<div className={classes.loginWrapper} style={Style} >
             <div className={classes.loginFormWrapper}>
                 <LoginForm
-                 onSubmit={onSubmit} 
-                  captchaUrl={props.captchaUrl}     
+                    onSubmit={onSubmit}
+                    captchaUrl={props.captchaUrl}
                 />
-                {props.isRequesting? <LoginLoader /> : null}
+                {props.isRequesting ? <LoginLoader /> : null}
             </div>
         </div>)
 }

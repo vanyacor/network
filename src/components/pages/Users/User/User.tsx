@@ -3,8 +3,15 @@ import classes from './User.module.css';
 import userPhoto from '../../../../assets/images/autoAvatar.png';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames/bind';
+import { UserType } from '../../../../types/types';
 
-const User = (props) => {
+type PropsType = {
+    setFollowing: (isToFollow: boolean, userId: number) => void
+    user: UserType
+    followingInProgress: Array<number>
+}
+
+const User: React.FC<PropsType> = (props) => {
     const follow = () => {
         props.setFollowing(true, props.user.id);
     };

@@ -10,6 +10,8 @@ const Avatar = (props) => {
             props.savePhoto(e.target.files[0]);
         }
     }
+    
+    debugger;
     return (
         <div className={classes.avatar}>
             {props.isPhotoSaving ? <SavePhotoLoader /> : <img

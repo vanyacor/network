@@ -1,3 +1,4 @@
+import { AppStateType } from "../redux/redux-store"
 
 //PROFILEPAGE
 export type PostType = {
@@ -33,8 +34,9 @@ export type ProfileType = {
 }
 
 
-//USERSPAFE
+//USERSPAGE
 export type UserType = {
+    followed?: boolean
     id: number
     name: string
     status: string
@@ -56,4 +58,17 @@ export type InitialStateType = {
     dialogs: Array<DialogsUsersType>,
     messagesData: Array<MessagesDataType>,
     newMessageText: string
+}
+
+//Reducers 
+
+export type GetStateType = () => AppStateType;
+
+// LOGIN 
+
+export type LoginType = {
+    userId: number | null
+    email: string | null
+    login: string | null
+    isAuth?: boolean
 }

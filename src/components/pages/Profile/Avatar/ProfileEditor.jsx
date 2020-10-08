@@ -2,7 +2,6 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import classes from './ProfileEditor.module.css';
 import { maxlength, required } from './../../../../validater/validtate';
-import Login from './../../../auth/Login';
 
 let maxlength200 = maxlength(200);
 

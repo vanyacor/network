@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import classes from './MainImg.module.css'; 
 
-const ProfileStatus = (props) => {
-    let [editMode, setEditMode] = useState(false);
-    let [status, setStatus] = useState(props.status);
+type PropsType = {
+    status: string
+    profileUser: number
+    updateStatus: (status: string) => void
+}
+
+const ProfileStatus: React.FC<PropsType> = (props) => {
+    let [editMode, setEditMode] = useState<boolean>(false);
+    let [status, setStatus] = useState<string>(props.status);
 
     useEffect(() => {
          setStatus(props.status);
-    }, [props.status])
+    }, [props.status]);
 
     const activateEditMode = () => {
         if (!props.profileUser) {
@@ -20,7 +26,7 @@ const ProfileStatus = (props) => {
         props.updateStatus(status);
     };
 
-    const onStatusChange = (e) => {
+    const onStatusChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setStatus(e.currentTarget.value);
     }
 

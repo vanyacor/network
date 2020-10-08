@@ -1,7 +1,5 @@
 import { DialogsUsersType, MessagesDataType, InitialStateType } from "./../types/types";
-
-const ADD_MESSAGE = 'dialogs/ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'dialogs/UPDATE-NEW-MESSAGE-TEXT';
+import { InferActionsTypes } from "./redux-store";
 
 
 let initialState: InitialStateType = {
@@ -66,9 +64,9 @@ let initialState: InitialStateType = {
     newMessageText: '',
 };
 
-const dialogsReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state: InitialStateType = initialState, action: DialogsActionsType): InitialStateType => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case 'ADD_MESSAGE':
             let newmessage = {
                 user: 'me',
                 id: state.messagesData.length + 1,
@@ -79,7 +77,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: any): In
                 messagesData: [...state.messagesData, newmessage],
                 newMessageText: '',
             };
-        case UPDATE_NEW_MESSAGE_TEXT:
+        case 'UPDATE_NEW_MESSAGE_TEXT':
             return {
                 ...state,
                 newMessageText: action.newText,
@@ -89,21 +87,14 @@ const dialogsReducer = (state: InitialStateType = initialState, action: any): In
     }
 };
 
-// ADD_MESSAGE ACTION CREATOR
-type addMessageActionCreatorActionType = {
-    type: typeof ADD_MESSAGE
-};
-export const addMessageActionCreator = (): addMessageActionCreatorActionType => ({ type: ADD_MESSAGE, });
+type DialogsActionsType = InferActionsTypes<typeof DialogsActions>;
 
-// UPDATE_NEW_MESSAGE_TEXT ACTION CREATOR
-
-type updateNewMessageTextActionCreatorActionType = {
-    type: typeof UPDATE_NEW_MESSAGE_TEXT,
-    newText: string,
-};
-export const updateNewMessageTextActionCreator = (text: string): updateNewMessageTextActionCreatorActionType => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newText: text,
-});
+export let DialogsActions = {
+    addMessageActionCreator: () => ({ type: 'ADD_MESSAGE', } as const),
+    updateNewMessageTextActionCreator: (text: string) => ({
+        type: 'UPDATE_NEW_MESSAGE_TEXT',
+        newText: text,
+    } as const),
+}
 
 export default dialogsReducer;

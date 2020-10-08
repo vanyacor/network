@@ -8,7 +8,7 @@ import { reducer as formReducer } from 'redux-form';
 const { createStore, combineReducers, applyMiddleware, compose } = require("redux");
 
 
-let reducers = combineReducers({
+let rootReducers = combineReducers({
     profilePage: profileReducer,
     messagesPage: dialogsReducer,
     usersPage: usersReducer,
@@ -16,9 +16,17 @@ let reducers = combineReducers({
     form: formReducer,
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, /* preloadedState, */ composeEnhancers(applyMiddleware(thunkMiddleware)));
+type RootReducersType = typeof rootReducers; // (globalstate: AppStateType) => AppStateType 
+export type AppStateType = ReturnType<RootReducersType>;
 
+type PropertiesType<T> = T extends { [key: string]: infer U } ? U : never;
+export type InferActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesType<T>>
+
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducers, /* preloadedState, */ composeEnhancers(applyMiddleware(thunkMiddleware)));
+
+// @ts-ignore
 window.storeEE = store;
 
 export default store;

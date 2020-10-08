@@ -1,16 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import {setUsers, setCurrentPage, getUsers, setFollowing } from './../../../redux/usersReducer';
+import { AppStateType } from '../../../redux/redux-store';
+import { getUsers, setFollowing } from '../../../redux/usersReducer';
+import { UserType } from '../../../types/types';
 import Users from './Users';
 
+type MapStatePropsType = {
+    currentPage: number
+    pageSize: number
+    isFetching: boolean
+    users: Array<UserType>
+    totalUsersCount: number
+    followingInProgress: Array<number>
+};
 
-class UsersContainer extends React.Component {
+type MapDispatchPropsType = {
+    setFollowing: (isToFollow: boolean, userId: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+};
+
+type PropsType = MapStatePropsType & MapDispatchPropsType;
+
+class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
-    onPageChanged(page) {
+    onPageChanged(page: number) {
         if (page != this.props.currentPage && !this.props.isFetching) {
             this.props.getUsers(page, this.props.pageSize);
         }
@@ -30,16 +47,14 @@ class UsersContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
-    };
-};
+let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+    users: state.usersPage.users,
+    pageSize: state.usersPage.pageSize,
+    totalUsersCount: state.usersPage.totalUsersCount,
+    currentPage: state.usersPage.currentPage,
+    isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress,
+});
 
 /* let mapDispatchToProps = (dispatch) => {
     return {
@@ -54,9 +69,7 @@ let mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, {
-        setUsers,
-        setCurrentPage,
         getUsers,
-        setFollowing
+        setFollowing,
     })
 )(UsersContainer);;

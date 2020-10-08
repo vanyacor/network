@@ -1,11 +1,21 @@
 import React from 'react';
 import classes from './Users.module.css'
 
-let Paginator = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [], startPageNumber, endPageNumber, style;
+type PropsType = {
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanged: (p: number) => void
+}
 
-    switch (props.currentPage) {
+let Paginator: React.FC<PropsType> = ({ totalUsersCount, pageSize, currentPage, onPageChanged }) => {
+    let pagesCount = Math.ceil(totalUsersCount / pageSize);
+    let pages: Array<number> = [],
+        startPageNumber: number,
+        endPageNumber: number,
+        style: string;
+
+    switch (currentPage) {
         case 1:
         case 2:
         case 3:
@@ -25,8 +35,8 @@ let Paginator = (props) => {
             endPageNumber = pagesCount + 2;
             break;
         default:
-            startPageNumber = props.currentPage - 2;
-            endPageNumber = props.currentPage + 2;
+            startPageNumber = currentPage - 2;
+            endPageNumber = currentPage + 2;
             break;
     }
 
@@ -39,11 +49,11 @@ let Paginator = (props) => {
                 <div
                     key={p}
                     className={
-                        props.currentPage === p
+                        currentPage === p
                             ? classes.selectedPage + " " + classes.page
                             : classes.page
                     }
-                    onClick={(e) => { props.onPageChanged(p) }}>
+                    onClick={(e) => { onPageChanged(p) }}>
                     {p}
                 </div>
             )
@@ -54,11 +64,11 @@ let Paginator = (props) => {
                 <div
                     key={p}
                     className={
-                        props.currentPage === p
+                        currentPage === p
                             ? classes.selectedPage + " " + classes.page
                             : classes.page + " " + style
                     }
-                    onClick={(e) => { props.onPageChanged(p) }}>
+                    onClick={(e) => { onPageChanged(p) }}>
                     {p}
                 </div>
             )

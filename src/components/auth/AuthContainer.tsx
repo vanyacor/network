@@ -1,24 +1,42 @@
 import React from 'react';
-import { setAuth, setLogin, logout } from './../../redux/authReducer';
+import { setAuth, setLogin, logout } from '../../redux/authReducer';
 import { connect } from 'react-redux';
 import Content from './Content';
 import Login from './Login';
 import { compose } from 'redux';
 import img from './../../assets/images/forest.jpg';
-import { getIsAuthSelect, getIsFetchingSelect, getLoginSelect } from './../../redux/auth-selectors';
+import { getIsAuthSelect, getIsFetchingSelect, getLoginSelect } from '../../redux/auth-selectors';
+import { AppStateType }from "./../../redux/redux-store"
+import { LoginType } from '../../types/types';
 
-class AuthContainer extends React.Component {
+type MapStateToPropsType = {
+    isAuth: boolean
+    isFetching: boolean
+    login: string
+    isRequesting: boolean
+    captchaUrl: string | null
+}
 
+type MapDispatchToProps = {
+    setAuth: () => void
+    setLogin: (LoginData: LoginType) => void
+    logout: () => void
+}
+
+type PropsType = MapStateToPropsType & MapDispatchToProps;
+class AuthContainer extends React.Component<PropsType> {
+
+    // @ts-ignore
     catchAllUnhandledErrors = (promiseRejectionEvent) => {
         alert("Some error occured");
-        
     }
     componentWillMount() {
         this.props.setAuth();
         window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
+        // @ts-ignore
         window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
 
@@ -46,7 +64,7 @@ let mapStateToProps = (state) => {
 }; */
 
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         isAuth: getIsAuthSelect(state),
         isFetching: getIsFetchingSelect(state),
