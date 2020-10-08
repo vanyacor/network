@@ -89,7 +89,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
 
 type DialogsActionsType = InferActionsTypes<typeof DialogsActions>;
 
-export let DialogsActions = {
+export const DialogsActions = {
     addMessageActionCreator: () => ({ type: 'ADD_MESSAGE', } as const),
     updateNewMessageTextActionCreator: (text: string) => ({
         type: 'UPDATE_NEW_MESSAGE_TEXT',

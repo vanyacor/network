@@ -1,7 +1,9 @@
 import { stopSubmit } from 'redux-form';
-import { ThunkAction } from 'redux-thunk';
-import { authAPI, ResultCodesEnum, ResultCodesForCaptcha, securityAPI } from '../api/api';
-import { AppStateType, InferActionsTypes } from './redux-store';
+import { ResultCodesEnum, ResultCodesForCaptcha } from '../api/api';
+import { BaseThunkType, InferActionsTypes } from './redux-store';
+import { authAPI } from './../api/auth-api';
+import { securityAPI } from './../api/security-api';
+import { LoginType } from '../types/types';
 
 /* const SET_USER_DATA = 'auth/SET_USER_DATA';
 const SET_IS_FETCHING = 'auth/SET_IS_FETCHING';
@@ -76,7 +78,7 @@ export const authActions = {
 // SET_IS_FETCHIN ACTION CREATOR
 
 
-type AuthThunksType = ThunkAction<Promise<void>, AppStateType, unknown, AuthActionsType>;
+type AuthThunksType = BaseThunkType<AuthActionsType>;
 
 export const setAuth = (): AuthThunksType => async (dispatch, getState) => {
     dispatch(authActions.setIsFetching(true));
@@ -89,7 +91,7 @@ export const setAuth = (): AuthThunksType => async (dispatch, getState) => {
     dispatch(authActions.setIsFetching(false));
 }
 
-export const setLogin = (loginData: any): AuthThunksType => async (dispatch, getState) => {
+export const setLogin = (loginData: LoginType): AuthThunksType => async (dispatch, getState) => {
     dispatch(authActions.setIsRequesting(true));
     let { login, password, rememberMe, captcha } = loginData;
     let data = await authAPI.setLogin(login, password, rememberMe, captcha);

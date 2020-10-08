@@ -1,8 +1,8 @@
 import { stopSubmit } from 'redux-form';
-import { ThunkAction } from 'redux-thunk';
-import { profileAPI, ResultCodesEnum } from '../api/api';
+import { ResultCodesEnum } from '../api/api';
 import { PhotosType, PostType, ProfileType } from './../types/types';
-import { AppStateType, InferActionsTypes } from './redux-store';
+import { BaseThunkType, InferActionsTypes } from './redux-store';
+import { profileAPI } from './../api/profile-api';
 
 let initialState = {
     posts: [] as Array<PostType>,
@@ -105,7 +105,7 @@ export const ProfileActions = {
 }
 
 
-type ProfileThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ProfileActionsTypes>;
+type ProfileThunkType = BaseThunkType<ProfileActionsTypes>;
 
 export const getUser = (
     urlUserId: number | null,

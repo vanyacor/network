@@ -1,8 +1,8 @@
-import { usersAPI } from '../api/api';
 import { updateObjectInArray } from './../utils/object-helpers';
 import { UserType } from './../types/types';
-import { AppStateType, InferActionsTypes } from './redux-store';
-import { ThunkAction } from 'redux-thunk';
+import { BaseThunkType, InferActionsTypes } from './redux-store';
+import { usersAPI } from './../api/users-api';
+import { ResultCodesEnum } from '../api/api';
 
 
 
@@ -83,7 +83,7 @@ export const UsersActions = {
 }
 
 
-type UsersThunkType = ThunkAction<Promise<void>, AppStateType, unknown, UsersActionsTypes>;
+type UsersThunkType = BaseThunkType<UsersActionsTypes>;
 export const getUsers = (
     currentPage: number,
     pageSize: number
@@ -109,7 +109,7 @@ export const setFollowing = (
     dispatch(UsersActions.setFollowingProgress(true, userId));
     let data = await request(userId);
 
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodesEnum.Success) {
         dispatch(action(userId));
     }
     dispatch(UsersActions.setFollowingProgress(false, userId));

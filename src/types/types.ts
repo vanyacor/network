@@ -66,9 +66,16 @@ export type GetStateType = () => AppStateType;
 
 // LOGIN 
 
-export type LoginType = {
+export type LoginResponseType = {
     userId: number | null
     email: string | null
     login: string | null
     isAuth?: boolean
+}
+
+export type LoginType = {
+    login: string
+    password: string
+    rememberMe: boolean
+    captcha: string
 }
