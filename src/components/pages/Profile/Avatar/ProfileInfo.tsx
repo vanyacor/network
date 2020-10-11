@@ -10,8 +10,17 @@ import website from './../../../../assets/images/globe.svg';
 import github from './../../../../assets/images/github.svg';
 import facebook from './../../../../assets/images/facebook.svg';
 import EditBtn from './EditBtn';
+import { ProfileType } from '../../../../types/types';
+import { ThunkAction } from 'redux-thunk';
 
-const ProfileInfo = (props) => {
+type ProfileInfoType = {
+    isOwner: boolean
+    profile: ProfileType
+    isPhotoSaving: boolean
+    savePhoto: (file: File) => ThunkAction<Promise<void>, any, any, any>
+    activateEditMode: (isEditActivated: boolean) => void
+}
+const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
     return (
         <div className={classes.profile__avatar}>
             <Avatar

@@ -2,7 +2,7 @@ import { DialogsUsersType, MessagesDataType, InitialStateType } from "./../types
 import { InferActionsTypes } from "./redux-store";
 
 
-let initialState: InitialStateType = {
+let initialState = {
     dialogs: [
         { id: 1, name: 'Dimych' },
         { id: 2, name: 'Andrey' },
@@ -87,11 +87,11 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
     }
 };
 
-type DialogsActionsType = InferActionsTypes<typeof DialogsActions>;
+export type DialogsActionsType = InferActionsTypes<typeof DialogsActions>;
 
 export const DialogsActions = {
-    addMessageActionCreator: () => ({ type: 'ADD_MESSAGE', } as const),
-    updateNewMessageTextActionCreator: (text: string) => ({
+    addMessage: () => ({ type: 'ADD_MESSAGE', } as const),
+    updateNewMessageText: (text: string) => ({
         type: 'UPDATE_NEW_MESSAGE_TEXT',
         newText: text,
     } as const),

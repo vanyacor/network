@@ -1,27 +1,35 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, InjectedFormProps, reduxForm, WrappedFieldProps } from "redux-form";
 import classes from './ProfileEditor.module.css';
-import { maxlength, required } from './../../../../validater/validtate';
+import { maxlength, required } from '../../../../validater/validtate';
+import { ProfileType } from "../../../../types/types";
 
 let maxlength200 = maxlength(200);
 
-let editorInput = ({ input, metam, ...props }) => {
-    let haserror = props.meta.touched && props.meta.error;
+let editorInput: React.FC<WrappedFieldProps> = ({ input, meta: { touched, error }, ...props }) => {
+    let haserror = touched && error;
     let styleError = haserror ? classes.error : "";
     return (<input className={classes.inputs + " " + styleError} {...input} {...props}></input>)
 }
 
-let editorTextarea = ({ input, metam, ...props }) => {
-    let haserror = props.meta.touched && props.meta.error;
+let editorTextarea: React.FC<WrappedFieldProps> = ({ input, meta: { touched, error }, ...props }) => {
+    let haserror = touched && error;
     let styleError = haserror ? classes.error : "";
     return (<textarea className={classes.textarea + " " + styleError} {...input} {...props}></textarea>)
 }
 
-const ProfileEditLoader = (props) => {
+
+
+const ProfileEditLoader = (props: {}) => {
     return (<div className={classes.fetching}></div>)
 }
+type ProfileEditorType = {
+    isFetching: boolean
+    activateEditMode: (isEditActivated: boolean) => void
+    profile: ProfileType
+}
 
-const ProfileEditor = ({ handleSubmit, ...props }) => {
+const ProfileEditor: React.FC<InjectedFormProps<ProfileType, ProfileEditorType> & ProfileEditorType> = ({ handleSubmit, ...props }) => {
     return (<div className={classes.profile_editor}>
         {props.isFetching && <ProfileEditLoader />}
 
@@ -85,7 +93,7 @@ const ProfileEditor = ({ handleSubmit, ...props }) => {
 
 }
 
-const profileEditReduxForm = reduxForm({ form: 'profileEdit' })(ProfileEditor);
+const profileEditReduxForm = reduxForm<ProfileType, ProfileEditorType>({ form: 'profileEdit' })(ProfileEditor);
 
 export default profileEditReduxForm;
 

@@ -2,10 +2,11 @@ import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import { getUser, getStatus, updateStatus, savePhoto, saveProfile, ProfileActions } from '../../../redux/profileReducer';
-import { withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { ProfileType } from '../../../types/types';
 import { AppStateType } from '../../../redux/redux-store';
+import { ThunkAction } from 'redux-thunk';
 
 type MapStateToPropsProfileType = {
     isPhotoSaving: boolean
@@ -16,41 +17,47 @@ type MapStateToPropsProfileType = {
 }
 
 type MapDispatchProfileType = {
-    getUser: (urlUserId: number | null, authUserId: number) => void
+    getUser: (urlUserId: number | null, authUserId: number) => ThunkAction<Promise<void>, any, any, any>
     getStatus: (userId: number) => void
-    savePhoto: (file: File) => void
-    saveProfile: (formData: Object, setEditMode: Function, setIsFetching: Function) => void
+    savePhoto: (file: File) => ThunkAction<Promise<void>, any, any, any>
+    saveProfile: (
+        formData: ProfileType,
+        activateEditMode: (isEditActivated: boolean) => void,
+        setIsFetching: (isFetching: boolean) => void) => ThunkAction<Promise<void>, any, any, any>
+    setStatus: (status: string) => { type: string, status: string }
+    updateStatus: (status: string) => ThunkAction<Promise<void>, any, any, any>
 }
 
 type OwnPropsProfileType = {
     match: Object
 }
 
-type PropsType = MapStateToPropsProfileType & MapDispatchProfileType & OwnPropsProfileType;
+type PathParamsType = {
+    userId: string
+}
+
+
+
+type PropsType = MapStateToPropsProfileType & MapDispatchProfileType & OwnPropsProfileType & RouteComponentProps<PathParamsType>;
 
 class ProfileContainer extends React.Component<PropsType> {
     componentWillMount() {
-        // @ts-ignore
-        this.props.getUser(this.props.match.params.userId, this.props.userId);
-        // @ts-ignore
-        this.props.getStatus(this.props.match.params.userId || this.props.userId);
+        this.props.getUser(+this.props.match.params.userId, this.props.userId);
+        this.props.getStatus(+this.props.match.params.userId || this.props.userId);
     }
     componentDidUpdate(prevProps: PropsType, prevState: AppStateType) {
-        // @ts-ignore
         if (this.props.match.params.userId !== prevProps.match.params.userId) {
-            // @ts-ignore
-            this.props.getUser(this.props.match.params.userId, this.props.userId);
-            // @ts-ignore
-            this.props.getStatus(this.props.match.params.userId || this.props.userId);
+            this.props.getUser(+this.props.match.params.userId, this.props.userId);
+            this.props.getStatus(+this.props.match.params.userId || this.props.userId);
         }
     }
     render() {
         return <Profile {...this.props}
             profile={this.props.profile}
-            // @ts-ignore
-            owner={!this.props.match.params.userId}
+            owner={!+this.props.match.params.userId}
             savePhoto={this.props.savePhoto}
-            isPhotoSaving={this.props.isPhotoSaving}></Profile>
+            isPhotoSaving={this.props.isPhotoSaving}
+            saveProfile={this.props.saveProfile}></Profile>
 
 
     }
@@ -65,8 +72,8 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsProfileType => {
         isPhotoSaving: state.profilePage.isPhotoSaving,
     }
 }
-export default compose(
-    connect(mapStateToProps, {
+export default compose<React.ComponentType>(
+    connect<MapStateToPropsProfileType, MapDispatchProfileType>(mapStateToProps, {
         getUser,
         getStatus,
         updateStatus,

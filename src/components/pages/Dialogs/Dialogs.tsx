@@ -3,8 +3,8 @@ import classes from './Dialogs.module.css';
 import MessagesContainer from './Messages/MessagesContainer';
 import PersonsContainer from './Persons/PersonsContainer';
 
-
-const Dialogs = (props) => {
+type DialogsMainType = {};
+const Dialogs: React.FC<DialogsMainType> = (props) => {
     return (
         <div className={classes.dialogs}>
             <PersonsContainer />

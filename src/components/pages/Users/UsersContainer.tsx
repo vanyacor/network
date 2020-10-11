@@ -67,9 +67,9 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     };
 }; */
 
-export default compose(
-    connect(mapStateToProps, {
+export default compose<React.ComponentType>(
+    connect<MapStatePropsType, MapDispatchPropsType>(mapStateToProps, {
         getUsers,
-        setFollowing,
+        setFollowing
     })
 )(UsersContainer);;

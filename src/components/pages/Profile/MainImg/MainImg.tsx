@@ -1,15 +1,19 @@
 import React from 'react';
 import classes from './MainImg.module.css'
 import ProfileStatus from './ProfileStatus';
+import { ThunkAction } from 'redux-thunk';
 
-const MainImg = (props) => {
+type MainImgType = {
+    status: string
+    updateStatus: (status: string) => ThunkAction<Promise<void>, any, any, any>
+    profileUser: number
+}
+const MainImg: React.FC<MainImgType> = (props) => {
     return (
         <div className={classes.img}>
             <ProfileStatus
                 status={props.status ? props.status : ''}
-                setStatus={props.setStatus}
                 updateStatus={props.updateStatus}
-                currentUser={props.currentUser}
                 profileUser={props.profileUser}
                 />
         </div>

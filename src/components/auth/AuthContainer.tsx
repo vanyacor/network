@@ -6,7 +6,7 @@ import Login from './Login';
 import { compose } from 'redux';
 import img from './../../assets/images/forest.jpg';
 import { getIsAuthSelect, getIsFetchingSelect, getLoginSelect } from '../../redux/auth-selectors';
-import { AppStateType }from "./../../redux/redux-store"
+import { AppStateType } from "./../../redux/redux-store"
 import { LoginType } from '../../types/types';
 
 type MapStateToPropsType = {
@@ -74,6 +74,6 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 };
 
-export default compose(
-    connect(mapStateToProps, { setAuth, setLogin, logout })
+export default compose<React.ComponentType>(
+    connect<MapStateToPropsType, MapDispatchToProps>(mapStateToProps, { setAuth, setLogin, logout })
 )(AuthContainer);;

@@ -3,7 +3,10 @@ import classes from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 import { MessagesIcon, UserIcon, UsersIcon, NewsIcon, SettingsIcon } from './Svg';
 
-const Navbar = (props) => {
+type NavBarType = {
+
+}
+const Navbar: React.FC<NavBarType> = (props) => {
     return (
         <nav className={classes.navbar}>
             <div className={classes.links}>

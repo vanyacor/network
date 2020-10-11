@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { BaseSyntheticEvent } from 'react';
 import classes from './Avatar.module.css';
 import userPhoto from '../../../../assets/images/autoAvatar.png';
-import { SavePhotoLoader } from './../../../preloader/SavePhotoLoader';
+import { SavePhotoLoader } from '../../../preloader/SavePhotoLoader';
+import { ThunkAction } from 'redux-thunk';
 
-const Avatar = (props) => {
 
-    const omMainPhotoSelected = (e) => {
+type AvatarType = {
+    savePhoto: (file: File) => ThunkAction<Promise<void>, any, any, any>
+    isPhotoSaving: boolean
+    photo: string
+    isOwner: boolean
+}
+const Avatar: React.FC<AvatarType> = (props) => {
+
+    const omMainPhotoSelected = (e: BaseSyntheticEvent) => {
         if (e.target.files.length) {
             props.savePhoto(e.target.files[0]);
         }
     }
-    
-    debugger;
     return (
         <div className={classes.avatar}>
             {props.isPhotoSaving ? <SavePhotoLoader /> : <img

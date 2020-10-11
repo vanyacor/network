@@ -5,22 +5,40 @@ import ProfileInfo from './Avatar/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import Loader from '../../preloader/Loader';
 import ProfileEditor from './Avatar/ProfileEditor';
+import { ProfileType } from '../../../types/types';
+import { ThunkAction } from 'redux-thunk';
 
-const Profile = ({ saveProfile, ...props }) => {
+
+type ProfileTypes = {
+    saveProfile: (
+        formData: ProfileType,
+        activateEditMode: (isEditActivated: boolean) => void,
+        setIsFetching: (isFetching: boolean) => void) => ThunkAction<Promise<void>, any, any, any>
+    owner: boolean
+    profile: ProfileType
+    isFetching: boolean
+    status: string
+    userId: number
+    setStatus: (status: string) => {type: string, status: string}
+    updateStatus: (status: string) => ThunkAction<Promise<void>, any, any, any>
+    savePhoto: (file: File) => ThunkAction<Promise<void>, any, any, any>
+    isPhotoSaving: boolean
+}
+const Profile: React.FC<ProfileTypes> = ({ saveProfile, ...props }) => {
     let [editMode, setEditMode] = useState(false);
     let [isFetching, setFetching] = useState(false);
 
-    const activateEditMode = (isEditActivated) => {
+    const activateEditMode = (isEditActivated: boolean) => {
         if (props.owner) {
             setEditMode(isEditActivated);
         }
     };
 
-    const setIsFetching = (isFetching) => {
+    const setIsFetching = (isFetching: boolean) => {
         setFetching(isFetching);
     }
 
-    const onSubmit = (formData) => {
+    const onSubmit = (formData: ProfileType): void => {
         saveProfile(formData, activateEditMode, setIsFetching);
     }
 
@@ -39,9 +57,8 @@ const Profile = ({ saveProfile, ...props }) => {
                 />
                 : <><MainImg
                     status={props.status}
-                    currentUser={props.userId}
+                    // @ts-ignore
                     profileUser={props.match.params.userId}
-                    setStatus={props.setStatus}
                     updateStatus={props.updateStatus}
                 />
                     <ProfileInfo profile={props.profile}

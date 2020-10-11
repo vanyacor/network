@@ -1,10 +1,15 @@
 import React from 'react';
 import classes from './Persons.module.css';
 import DialogItem from './DialogItem/DialogItem';
+import { DialogsUsersType } from '../../../../types/types';
+import { PseudoBigInt } from 'typescript';
 
-const Persons = (props) => {
+type PersonsType = {
+    dialogs: Array<DialogsUsersType>
+}
+const Persons: React.FC<PersonsType> = (props) => {
     let Dialogs = props.dialogs
-        .map(dialog => (
+        .map((dialog: DialogsUsersType) => (
             <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} />
         ));
 

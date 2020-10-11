@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import Persons from './Persons';
 import { connect } from 'react-redux';
+import { AppStateType } from '../../../../redux/redux-store';
+import { Action } from 'redux';
 
 
 
-
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         dialogs: state.messagesPage.dialogs,
     };
 };
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch: Dispatch<Action>) => {
     return {};
 };
 

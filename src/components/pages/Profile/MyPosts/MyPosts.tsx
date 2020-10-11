@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { BaseSyntheticEvent } from 'react';
+import { PostType } from '../../../../types/types';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
 
+type MePostType = {
+    posts: Array<PostType>
+    addPost: () => void
+    updateNewPostText: (text: string) => void
+    newPostText: string
+}
+const MyPosts = React.memo<MePostType>((props) => {
 
-const MyPosts = React.memo((props) => {
-
-    let posts = props.posts
+    let posts = [...props.posts]
+        .reverse()
         .map(postMessage => (
             <Post key={postMessage.id} message={postMessage.message} likes={postMessage.likesCount} />
         ));
 
 
-    const enter = (event) => {
+    const enter = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === 'Enter') onAddPost();
     };
 
@@ -20,7 +27,7 @@ const MyPosts = React.memo((props) => {
         props.addPost();
     };
 
-    const onPostChange = (e) => {
+    const onPostChange = (e: BaseSyntheticEvent) => {
         let text = e.currentTarget.value;
         props.updateNewPostText(text);
     };
@@ -38,7 +45,7 @@ const MyPosts = React.memo((props) => {
                 </div>
             </div>
             <div className={classes.posts__wrapper}>
-                {posts.reverse()}
+                {posts}
             </div>
         </div>
 

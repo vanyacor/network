@@ -1,7 +1,10 @@
 import React from 'react';
 import classes from './EditBtn.module.css';
 
-const EditBtn = (props) => {
+type EditBtnType = {
+    activateEditMode: (isEditActivated: boolean) => void
+}
+const EditBtn: React.FC<EditBtnType> = (props) => {
     return (<svg onClick={() => props.activateEditMode(true)} className={classes.editBtn} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
         viewBox="0 0 383.947 383.947" >
         <g>
