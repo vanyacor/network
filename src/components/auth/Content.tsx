@@ -3,7 +3,6 @@ import Header from '../Header/Header';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import ProfileContainer from '../pages/Profile/ProfileContainer';
 import UsersContainer from '../pages/Users/UsersContainer';
-import Navbar from '../Navbar/Navbar';
 import Loader from '../preloader/Loader';
 
 const Dialogs = React.lazy(() => import('../pages/Dialogs/Dialogs'));
@@ -11,14 +10,12 @@ const News = React.lazy(() => import('../pages/News/News'));
 const Settings = React.lazy(() => import('../pages/Settings/Settings'));
 
 type PropsType = {
-     login: string
-     logout: () => void
 }
 
 let Content: React.FC<PropsType> = (props) => {
     return (
         <div className="appWrapper">
-            <Header login={props.login} logout={props.logout} />
+            <Header />
             <div className="container">
                 <div className="app-wrapper-content">
                     <React.Suspense fallback={<Loader></Loader>}>
@@ -41,7 +38,6 @@ let Content: React.FC<PropsType> = (props) => {
 
                 </div>
             </div>
-            <Navbar />
         </div>
     )
 }

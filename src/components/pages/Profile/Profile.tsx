@@ -7,6 +7,8 @@ import Loader from '../../preloader/Loader';
 import ProfileEditor from './Avatar/ProfileEditor';
 import { ProfileType } from '../../../types/types';
 import { ThunkAction } from 'redux-thunk';
+import BottomBar from './../../BottomBar/BottomBar';
+import { LoginName } from '../../LoginName/LoginName';
 
 
 type ProfileTypes = {
@@ -19,7 +21,7 @@ type ProfileTypes = {
     isFetching: boolean
     status: string
     userId: number
-    setStatus: (status: string) => {type: string, status: string}
+    setStatus: (status: string) => { type: string, status: string }
     updateStatus: (status: string) => ThunkAction<Promise<void>, any, any, any>
     savePhoto: (file: File) => ThunkAction<Promise<void>, any, any, any>
     isPhotoSaving: boolean
@@ -68,7 +70,10 @@ const Profile: React.FC<ProfileTypes> = ({ saveProfile, ...props }) => {
                         activateEditMode={activateEditMode}
                     />
                     <MyPostsContainer /></>}
-
+            <BottomBar>
+                <div></div>
+                <LoginName />
+            </BottomBar>
         </div>
     )
 }

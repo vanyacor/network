@@ -4,6 +4,7 @@ import User from './User/User';
 import Loader from '../../preloader/Loader';
 import Paginator from './paginator';
 import { UserType } from '../../../types/types';
+import BottomBar from '../../BottomBar/BottomBar';
 
 type PropsType = {
     totalUsersCount: number
@@ -29,13 +30,6 @@ let Users: React.FC<PropsType> = ({
     ...props
 }) => {
     return (<div className={classes.users} key='users'>
-        <div className={classes.pagesCountWrapper}>
-            <Paginator
-                totalUsersCount={totalUsersCount}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                onPageChanged={onPageChanged} />
-        </div>
         <div>{
             isFetching ?
                 <Loader /> :
@@ -48,6 +42,13 @@ let Users: React.FC<PropsType> = ({
                     />))
         }
         </div>
+        <BottomBar >
+                <Paginator
+                    totalUsersCount={totalUsersCount}
+                    pageSize={pageSize}
+                    currentPage={currentPage}
+                    onPageChanged={onPageChanged} />
+        </BottomBar>
     </div>);
 }
 

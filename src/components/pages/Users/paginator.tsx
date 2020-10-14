@@ -43,7 +43,7 @@ let Paginator: React.FC<PropsType> = ({ totalUsersCount, pageSize, currentPage, 
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
-    return (<>{pages.map(p => {
+    return (<div className={classes.wrapper}>{pages.map(p => {
         if (p >= startPageNumber && p <= endPageNumber) {
             return (
                 <div
@@ -74,7 +74,7 @@ let Paginator: React.FC<PropsType> = ({ totalUsersCount, pageSize, currentPage, 
             )
         }
     })
-    }</>)
+    }</div>)
 }
 
 export default Paginator;

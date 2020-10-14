@@ -5,14 +5,13 @@ import Content from './Content';
 import Login from './Login';
 import { compose } from 'redux';
 import img from './../../assets/images/forest.jpg';
-import { getIsAuthSelect, getIsFetchingSelect, getLoginSelect } from '../../redux/auth-selectors';
+import { getIsAuthSelect, getIsFetchingSelect} from '../../redux/auth-selectors';
 import { AppStateType } from "./../../redux/redux-store"
 import { LoginType } from '../../types/types';
 
 type MapStateToPropsType = {
     isAuth: boolean
     isFetching: boolean
-    login: string
     isRequesting: boolean
     captchaUrl: string | null
 }
@@ -20,7 +19,6 @@ type MapStateToPropsType = {
 type MapDispatchToProps = {
     setAuth: () => void
     setLogin: (LoginData: LoginType) => void
-    logout: () => void
 }
 
 type PropsType = MapStateToPropsType & MapDispatchToProps;
@@ -68,12 +66,11 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         isAuth: getIsAuthSelect(state),
         isFetching: getIsFetchingSelect(state),
-        login: getLoginSelect(state),
         isRequesting: state.auth.isRequesting,
         captchaUrl: state.auth.captchaUrl,
     }
 };
 
 export default compose<React.ComponentType>(
-    connect<MapStateToPropsType, MapDispatchToProps>(mapStateToProps, { setAuth, setLogin, logout })
+    connect<MapStateToPropsType, MapDispatchToProps>(mapStateToProps, { setAuth, setLogin })
 )(AuthContainer);;

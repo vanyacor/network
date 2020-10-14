@@ -17,7 +17,7 @@ let initialState = {
 
 export type InitialStateType = typeof initialState;
 
-const usersReducer = (state = initialState, action: UsersActionsTypes): InitialStateType => {
+export const usersReducer = (state = initialState, action: UsersActionsTypes): InitialStateType => {
     switch (action.type) {
         case "FOLLOW":
             return {
@@ -54,7 +54,7 @@ const usersReducer = (state = initialState, action: UsersActionsTypes): InitialS
                 ...state,
                 followingInProgress: action.followingInProgress
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id != action.userId),
+                    : state.followingInProgress.filter(id => id !== action.userId),
             }
         default:
             return state;
