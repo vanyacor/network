@@ -43,38 +43,40 @@ let Paginator: React.FC<PropsType> = ({ totalUsersCount, pageSize, currentPage, 
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
-    return (<div className={classes.wrapper}>{pages.map(p => {
-        if (p >= startPageNumber && p <= endPageNumber) {
-            return (
-                <div
-                    key={p}
-                    className={
-                        currentPage === p
-                            ? classes.selectedPage + " " + classes.page
-                            : classes.page
-                    }
-                    onClick={(e) => { onPageChanged(p) }}>
-                    {p}
-                </div>
-            )
-        } else if (p === 1 || p === pagesCount) {
-            style = (p === 1) ? classes.startPage : classes.endPage;
+    return (
+        <div className={classes.wrapper}>{pages.map(p => {
+            if (p >= startPageNumber && p <= endPageNumber) {
+                return (
+                    <div
+                        key={p}
+                        className={
+                            currentPage === p
+                                ? classes.selectedPage + " " + classes.page
+                                : classes.page
+                        }
+                        onClick={(e) => { onPageChanged(p) }}>
+                        {p}
+                    </div>
+                )
+            } else if (p === 1 || p === pagesCount) {
+                style = (p === 1) ? classes.startPage : classes.endPage;
 
-            return (
-                <div
-                    key={p}
-                    className={
-                        currentPage === p
-                            ? classes.selectedPage + " " + classes.page
-                            : classes.page + " " + style
-                    }
-                    onClick={(e) => { onPageChanged(p) }}>
-                    {p}
-                </div>
-            )
-        }
-    })
-    }</div>)
+                return (
+                    <div
+                        key={p}
+                        className={
+                            currentPage === p
+                                ? classes.selectedPage + " " + classes.page
+                                : classes.page + " " + style
+                        }
+                        onClick={(e) => { onPageChanged(p) }}>
+                        {p}
+                    </div>
+                )
+            }
+        })
+        }</div>
+    )
 }
 
 export default Paginator;

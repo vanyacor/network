@@ -18,7 +18,7 @@
 }
 
 
-.right   {
+.right {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -26,9 +26,11 @@
 
 .right .message {
     color: rgb(255, 255, 255);
-    background-color:rgb(47, 127, 247);
+    background-color: rgb(47, 127, 247);
 }
 
-
-
-
+@media(max-width: 640px) {
+    .message {
+        max-width: 260px;
+    }
+}

@@ -1,17 +1,27 @@
 .post {
     display: flex;
     margin: 0 100px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     padding: 10px;
+    flex-direction: row;
     justify-content: space-between;
     color: white;
     background-color: rgb(32, 32, 32);
-    word-wrap: break-word;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.post_message {
+    width: 80%;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 @media (max-width: 576px) {

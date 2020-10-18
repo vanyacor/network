@@ -8,7 +8,7 @@ import { LoginName } from './../../LoginName/LoginName';
 const Settings = (props: any) => {
     return (
         <div className={classes.settings}>
-            <span>Settings</span>
+            <div className={classes.wrapper}>Settings</div>
             <BottomBar>
                 <LoginName />
             </BottomBar>

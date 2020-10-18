@@ -49,7 +49,7 @@ const Profile: React.FC<ProfileTypes> = ({ saveProfile, ...props }) => {
     }
     return (
         <div className={classes.profile}>
-            {editMode
+            <div className={classes.profile_wrapper}> {editMode
                 ? <ProfileEditor
                     activateEditMode={activateEditMode}
                     onSubmit={onSubmit}
@@ -70,9 +70,12 @@ const Profile: React.FC<ProfileTypes> = ({ saveProfile, ...props }) => {
                         activateEditMode={activateEditMode}
                     />
                     <MyPostsContainer /></>}
+            </div>
             <BottomBar>
-                <div></div>
-                <LoginName />
+                <div className={classes.profile_bottom_bar}>
+                    <div></div>
+                    <LoginName />
+                </div>
             </BottomBar>
         </div>
     )

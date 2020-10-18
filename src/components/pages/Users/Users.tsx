@@ -5,6 +5,8 @@ import Loader from '../../preloader/Loader';
 import Paginator from './paginator';
 import { UserType } from '../../../types/types';
 import BottomBar from '../../BottomBar/BottomBar';
+import { UsersSearchForm } from './UsersSearchForm';
+import { FilterType } from '../../../redux/usersReducer';
 
 type PropsType = {
     totalUsersCount: number
@@ -16,6 +18,7 @@ type PropsType = {
 
     onPageChanged: (p: number) => void
     setFollowing: (isToFollow: boolean, userId: number) => void
+    onFilterChanged: (filter: FilterType) => void
 }
 
 let Users: React.FC<PropsType> = ({
@@ -27,29 +30,35 @@ let Users: React.FC<PropsType> = ({
     isFetching,
     followingInProgress,
     setFollowing,
+    onFilterChanged,
     ...props
 }) => {
-    return (<div className={classes.users} key='users'>
-        <div>{
-            isFetching ?
-                <Loader /> :
-                users.map(u => (
-                    <User
-                        key={u.id}
-                        user={u}
-                        followingInProgress={followingInProgress}
-                        setFollowing={setFollowing}
-                    />))
-        }
-        </div>
-        <BottomBar >
+    return (
+        <div className={classes.users} key='users'>
+            <UsersSearchForm onFilterChanged={onFilterChanged}/>
+            <div className={classes.wrapper_users}>
+                {
+                    isFetching ?
+                        <Loader /> :
+                        users.map(u => (
+                            <User
+                                key={u.id}
+                                user={u}
+                                followingInProgress={followingInProgress}
+                                setFollowing={setFollowing}
+                            />))
+                }
+            </div>
+            <BottomBar >
                 <Paginator
                     totalUsersCount={totalUsersCount}
                     pageSize={pageSize}
                     currentPage={currentPage}
                     onPageChanged={onPageChanged} />
-        </BottomBar>
-    </div>);
+            </BottomBar>
+        </div>);
 }
+
+
 
 export default Users;

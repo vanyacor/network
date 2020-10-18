@@ -1,11 +1,11 @@
 .bottom_bar {
-        min-width: 310px;
-        height: 50px;
-        position: fixed;
+        width: 310px;
+        min-height: 50px;
+        max-height: 100px;
+        position: sticky;
         display: flex;
-        margin-bottom: 2px;
         padding: 0 14px;
-        bottom: 0;
+        bottom: 5px;
         left: 50%;
         transform: translateX(-50%);
         background-color: rgb(32, 32, 32);
@@ -14,18 +14,25 @@
         -moz-border-radius: 25px;
         -ms-border-radius: 25px;
         -o-border-radius: 25px;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
         user-select: none;
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
 }
 
 @media (max-width: 640px) {
         .bottom_bar {
-                width: 92%;
-        }
+                width: inherit;
+                max-width: inherit;
+                left: 0;
+                transform: none;
+                -webkit-transform: none;
+                -moz-transform: none;
+                -ms-transform: none;
+                -o-transform: none;
+}
 }

@@ -15,8 +15,8 @@ type PropsType = {
 let Content: React.FC<PropsType> = (props) => {
     return (
         <div className="appWrapper">
-            <Header />
             <div className="container">
+                <Header />
                 <div className="app-wrapper-content">
                     <React.Suspense fallback={<Loader></Loader>}>
                         <Switch >
@@ -27,12 +27,12 @@ let Content: React.FC<PropsType> = (props) => {
                             <Route key="settings" path="/settings"
                                 component={Settings} />
                             <Route key="profile" path="/profile/:userId?"
-                            // @ts-ignore
+                                // @ts-ignore
                                 render={() => <ProfileContainer />} />
                             <Route key="users" path="/users"
                                 render={() => <UsersContainer />} />
                             <Route key="/" exact path={"/"} render={() => <Redirect to="/profile" />} />
-                            <Route key="*" path={"*"} render={() =>  <div className={"not_found"}>404 NOT FOUND</div>} />
+                            <Route key="*" path={"*"} render={() => <div className={"not_found"}>404 NOT FOUND</div>} />
                         </Switch>
                     </React.Suspense>
 

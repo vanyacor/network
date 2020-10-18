@@ -1,7 +1,14 @@
 .dialogs {
     display: flex;
-    padding: 60px 0 60px 0;
+    padding: 60px 0 0;
     height: 100%;
+    flex-direction: column;
+}
+
+.dialogs_content_wrapper {
+    display: flex;
+    height: calc(100vh - 120px);
+    margin-bottom: 5px;
 }
 
 
@@ -79,4 +86,10 @@
 .messageBtn:hover {
     cursor: pointer;
     background-color: rgb(81, 169, 252);
+}
+
+@media(max-width: 640px) {
+    .dialogs {
+        padding: 40px 0 40px 0;
+    }
 }

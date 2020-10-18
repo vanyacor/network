@@ -58,11 +58,13 @@ type DialogsMainType = {};
 const Dialogs: React.FC<DialogsMainType> = (props) => {
     return (
         <div className={classes.dialogs}>
-            <PersonsContainer />
-            <MessagesContainer />
-            <BottomBar >
-                <ConnectedDialogsTextArea />
-            </BottomBar>
+            <div className={classes.dialogs_content_wrapper}><PersonsContainer />
+                <MessagesContainer /></div>
+            <div className={classes.bottom_bar_wrapper}>
+                <BottomBar >
+                    <ConnectedDialogsTextArea />
+                </BottomBar>
+            </div>
         </div>
     )
 };
