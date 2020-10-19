@@ -5,56 +5,36 @@ import Loader from '../../preloader/Loader';
 import Paginator from './paginator';
 import { UserType } from '../../../types/types';
 import BottomBar from '../../BottomBar/BottomBar';
-import { UsersSearchForm } from './UsersSearchForm';
-import { FilterType } from '../../../redux/usersReducer';
+import { UsersSearchForm } from './UsersSearchForm';import { useSelector } from 'react-redux';
+import { getFollowingInProgress, getIsFetching } from '../../../redux/selectors/users-selectors';
+import { getUsers } from './../../../redux/selectors/users-selectors';
 
 type PropsType = {
-    totalUsersCount: number
-    pageSize: number
-    currentPage: number
-    users: Array<UserType>
-    isFetching: boolean
-    followingInProgress: Array<number>
-
-    onPageChanged: (p: number) => void
-    setFollowing: (isToFollow: boolean, userId: number) => void
-    onFilterChanged: (filter: FilterType) => void
 }
 
-let Users: React.FC<PropsType> = ({
-    totalUsersCount,
-    pageSize,
-    currentPage,
-    onPageChanged,
-    users,
-    isFetching,
-    followingInProgress,
-    setFollowing,
-    onFilterChanged,
-    ...props
-}) => {
+let Users: React.FC<PropsType> = (props) => {
+    const followingInProgress = useSelector(getFollowingInProgress);
+    const isFetching = useSelector(getIsFetching);
+    const users = useSelector(getUsers);
+
+
     return (
         <div className={classes.users} key='users'>
-            <UsersSearchForm onFilterChanged={onFilterChanged}/>
+            <UsersSearchForm />
             <div className={classes.wrapper_users}>
                 {
                     isFetching ?
                         <Loader /> :
-                        users.map(u => (
+                        users.map((u: UserType) => (
                             <User
                                 key={u.id}
                                 user={u}
                                 followingInProgress={followingInProgress}
-                                setFollowing={setFollowing}
                             />))
                 }
             </div>
             <BottomBar >
-                <Paginator
-                    totalUsersCount={totalUsersCount}
-                    pageSize={pageSize}
-                    currentPage={currentPage}
-                    onPageChanged={onPageChanged} />
+                <Paginator isFetching={isFetching} />
             </BottomBar>
         </div>);
 }

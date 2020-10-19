@@ -4,19 +4,23 @@ import userPhoto from '../../../../assets/images/autoAvatar.png';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames/bind';
 import { UserType } from '../../../../types/types';
+import { useDispatch } from 'react-redux';
+import { setFollowing } from '../../../../redux/usersReducer';
 
 type PropsType = {
-    setFollowing: (isToFollow: boolean, userId: number) => void
     user: UserType
     followingInProgress: Array<number>
 }
 
 const User: React.FC<PropsType> = (props) => {
+
+    const dispatch = useDispatch();
+
     const follow = () => {
-        props.setFollowing(true, props.user.id);
+        dispatch(setFollowing(true, props.user.id));
     };
     const unFollow = () => {
-        props.setFollowing(false, props.user.id);
+        dispatch(setFollowing(false, props.user.id));
     };
     return (
         <div className={classes.userContainer}>
@@ -30,11 +34,11 @@ const User: React.FC<PropsType> = (props) => {
                     <span>{props.user.name}</span>
                     {props.user.followed
                         ? <button
-                            disabled={props.followingInProgress.some(id => id == props.user.id)}
+                            disabled={props.followingInProgress.some((id: number) => id == props.user.id)}
                             onClick={unFollow}
                             className={cn(classes.followBtn, classes.unsubscribe)}>Unfollow</button>
                         : <button
-                            disabled={props.followingInProgress.some(id => id == props.user.id)}
+                            disabled={props.followingInProgress.some((id: number) => id == props.user.id)}
                             onClick={follow}
                             className={cn(classes.followBtn, classes.subscribe)}>Follow</button>}
                 </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../Header/Header';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import ProfileContainer from '../pages/Profile/ProfileContainer';
-import UsersContainer from '../pages/Users/UsersContainer';
+import UsersPage from '../pages/Users/UsersPage';
 import Loader from '../preloader/Loader';
 
 const Dialogs = React.lazy(() => import('../pages/Dialogs/Dialogs'));
@@ -30,7 +30,7 @@ let Content: React.FC<PropsType> = (props) => {
                                 // @ts-ignore
                                 render={() => <ProfileContainer />} />
                             <Route key="users" path="/users"
-                                render={() => <UsersContainer />} />
+                                render={() => <UsersPage />} />
                             <Route key="/" exact path={"/"} render={() => <Redirect to="/profile" />} />
                             <Route key="*" path={"*"} render={() => <div className={"not_found"}>404 NOT FOUND</div>} />
                         </Switch>

@@ -2,6 +2,9 @@ import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import classes from './Users.module.css'
 import { FilterType } from '../../../redux/usersReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilter, getPageSize } from './../../../redux/selectors/users-selectors';
+import { getUsers } from './../../../redux/usersReducer';
 
 const usersSearchValidate = (values: any): any => {
     const errors = {};/* 
@@ -17,9 +20,17 @@ type FormType = {
 }
 
 type UsersSearchFormType = {
-    onFilterChanged: (filter: FilterType) => void
 }
-export const UsersSearchForm: React.FC<UsersSearchFormType> = ({ onFilterChanged }) => {
+export const UsersSearchForm: React.FC<UsersSearchFormType> = (props) => {
+    const pageSize = useSelector(getPageSize);
+    const filter = useSelector(getFilter);
+
+    const dispatch = useDispatch();
+
+    const onFilterChanged = (filter: FilterType) => {
+        dispatch(getUsers(1, pageSize, filter));
+    }
+
     const submit = (
         values: FormType,
         { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
@@ -38,7 +49,7 @@ export const UsersSearchForm: React.FC<UsersSearchFormType> = ({ onFilterChanged
     return (
         <div className={classes.search_form_wrapper}>
             <Formik
-                initialValues={{ term: '', friend: 'null' }}
+                initialValues={{ term: filter.term, friend: filter.friend }}
                 validate={usersSearchValidate}
                 onSubmit={submit}
             >

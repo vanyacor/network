@@ -3,6 +3,8 @@ import { Field, InjectedFormProps, reduxForm, WrappedFieldProps } from 'redux-fo
 import classes from './Login.module.css';
 import { maxlength, required } from '../../validater/validtate';
 import { LoginType } from '../../types/types';
+import { useSelector } from 'react-redux';
+import { getCaptchaUrl } from './../../redux/selectors/auth-selectors';
 
 let maxlength100 = maxlength(100);
 
@@ -14,10 +16,11 @@ let input: React.FC<WrappedFieldProps> = ({ input, meta: {touched, error}, ...pr
 }
 
 type LoginFormType = {
-    captchaUrl: string | null
 }
 
 let LoginForm: React.FC<InjectedFormProps<LoginType, LoginFormType> & LoginFormType> = (props) => {
+    const captchaUrl = useSelector(getCaptchaUrl);
+    
     return (
         <form className={classes.form} onSubmit={props.handleSubmit}>
             <span className={classes.loginText}>Welcome to my social network</span>
@@ -36,9 +39,9 @@ let LoginForm: React.FC<InjectedFormProps<LoginType, LoginFormType> & LoginFormT
                 component={input}
                 validate={[required, maxlength100]}
             />
-            {props.captchaUrl
+            {captchaUrl
                 ? <>
-                    <img src={props.captchaUrl} />
+                    <img src={captchaUrl} />
                     <Field
                         type={"text"}
                         name={"captcha"}

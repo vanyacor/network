@@ -1,14 +1,28 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentPage, getFilter, getPageSize, getTotalUsersCount } from '../../../redux/selectors/users-selectors';
 import classes from './Users.module.css'
+import { getUsers } from './../../../redux/usersReducer';
 
 type PropsType = {
-    totalUsersCount: number
-    pageSize: number
-    currentPage: number
-    onPageChanged: (p: number) => void
+    isFetching: boolean
 }
 
-let Paginator: React.FC<PropsType> = ({ totalUsersCount, pageSize, currentPage, onPageChanged }) => {
+let Paginator: React.FC<PropsType> = ({ isFetching }) => {
+    const totalUsersCount = useSelector(getTotalUsersCount);
+    const currentPage = useSelector(getCurrentPage);
+    const pageSize = useSelector(getPageSize);
+    const filter = useSelector(getFilter);
+
+    const dispatch = useDispatch();
+
+    const onPageChanged = (page: number) => {
+
+        if (page != currentPage && !isFetching) {
+            dispatch(getUsers(page, pageSize, filter));
+        }
+    }
+
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages: Array<number> = [],
         startPageNumber: number,

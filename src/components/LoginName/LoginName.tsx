@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classes from './LoginName.module.css';
-import { getLoginSelect } from './../../redux/auth-selectors';
+import { getLoginSelect } from '../../redux/selectors/auth-selectors';
 import { AppStateType } from '../../redux/redux-store';
 import { logout } from './../../redux/authReducer';
 import { connect } from 'react-redux';
