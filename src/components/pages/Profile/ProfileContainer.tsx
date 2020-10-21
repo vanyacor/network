@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import { ProfileType } from '../../../types/types';
 import { AppStateType } from '../../../redux/redux-store';
 import { ThunkAction } from 'redux-thunk';
-
+import { getProfile, getUserId, getIsFetching, getProfileStatus, getIsPhotoSaving } from './../../../redux/selectors/profile-selectors';
 type MapStateToPropsProfileType = {
     isPhotoSaving: boolean
     profile: ProfileType
@@ -65,11 +65,11 @@ class ProfileContainer extends React.Component<PropsType> {
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsProfileType => {
     return {
-        profile: state.profilePage.profile,
-        isFetching: state.profilePage.isFetching,
-        userId: state.auth.userId,
-        status: state.profilePage.status,
-        isPhotoSaving: state.profilePage.isPhotoSaving,
+        profile: getProfile(state),
+        isFetching: getIsFetching(state),
+        userId: getUserId(state),
+        status: getProfileStatus(state),
+        isPhotoSaving: getIsPhotoSaving(state),
     }
 }
 export default compose<React.ComponentType>(

@@ -16,7 +16,7 @@ const usersSearchValidate = (values: any): any => {
 
 type FormType = {
     term: string
-    friend: "true" | "false" | "null"
+    friend: 'true' | 'false' | 'null'
 }
 
 type UsersSearchFormType = {
@@ -49,6 +49,7 @@ export const UsersSearchForm: React.FC<UsersSearchFormType> = (props) => {
     return (
         <div className={classes.search_form_wrapper}>
             <Formik
+                enableReinitialize
                 initialValues={{ term: filter.term, friend: filter.friend }}
                 validate={usersSearchValidate}
                 onSubmit={submit}

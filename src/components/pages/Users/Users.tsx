@@ -5,9 +5,10 @@ import Loader from '../../preloader/Loader';
 import Paginator from './paginator';
 import { UserType } from '../../../types/types';
 import BottomBar from '../../BottomBar/BottomBar';
-import { UsersSearchForm } from './UsersSearchForm';import { useSelector } from 'react-redux';
+import { UsersSearchForm } from './UsersSearchForm'; import { useSelector } from 'react-redux';
 import { getFollowingInProgress, getIsFetching } from '../../../redux/selectors/users-selectors';
 import { getUsers } from './../../../redux/selectors/users-selectors';
+import { useHistory } from 'react-router-dom';
 
 type PropsType = {
 }
