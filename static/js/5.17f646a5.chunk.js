@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-kabzda-1"]=this["webpackJsonpreact-kabzda-1"]||[]).push([[5],{327:function(e,t,a){e.exports={settings:"Settings_settings__qe1EU",wrapper:"Settings_wrapper__1DNmE"}},329:function(e,t,a){"use strict";a.r(t);var n=a(0),s=a.n(n),r=a(327),c=a.n(r),i=a(74),p=a(142);t.default=function(e){return s.a.createElement("div",{className:c.a.settings},s.a.createElement("div",{className:c.a.wrapper},"Settings"),s.a.createElement(i.a,null,s.a.createElement(p.a,null)))}}}]);
+//# sourceMappingURL=5.17f646a5.chunk.js.map
